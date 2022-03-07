@@ -3,10 +3,13 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
   * {
     box-sizing: border-box;
+    margin: 0;
   }
   body {
-    margin: 0;
-    font-family: sans-serif;
+    max-width: 400px;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.2;
+    background: #F2F0F0;
   }
 
   .sr-only{
