@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function Card({ date, heading, text }) {
   return (
     <Wrapper>
-      <p>{date}</p>
+      <time>{date}</time>
       <h1>{heading}</h1>
       <p>{text}</p>
     </Wrapper>

@@ -31,19 +31,17 @@ function App() {
   ];
 
   return (
-    <main>
-      <Grid>
-        {notes.map((note, index) => (
-          <Card key={index} date={note.date} heading={note.heading} text={note.text} />
-        ))}
-      </Grid>
-    </main>
+    <Grid>
+      {notes.map((note, index) => (
+        <Card key={index} date={note.date} heading={note.heading} text={note.text} />
+      ))}
+    </Grid>
   );
 }
 
 export default App;
 
-const Grid = styled.section`
+const Grid = styled.main`
   display: grid;
   gap: 0.5rem;
 `;
