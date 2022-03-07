@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import Card from './components/Card.js';
+import Form from './components/Form.js';
 
 function App() {
-  const notes = [
+  const testData = [
     {
       date: '07.03.2022',
       heading: 'Capstone Projekt gestartet',
@@ -30,8 +32,11 @@ function App() {
     },
   ];
 
+  const [notes, setNotes] = useState([]);
+
   return (
     <Grid>
+      <Form setNotes={setNotes} notes={notes} />
       {notes.map((note, index) => (
         <Card key={index} date={note.date} heading={note.heading} text={note.text} />
       ))}
