@@ -2,7 +2,8 @@ import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
 
 export default function Form({ notes, setNotes }) {
-  const [inputData, setInputData] = useState({ date: '', heading: '', text: '' });
+  const [inputData, setInputData] = useState({ date: '', title: '', text: '' });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     setInputData({ ...inputData, date: getDate() });
@@ -18,9 +19,14 @@ export default function Form({ notes, setNotes }) {
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    const updatedNotes = [...notes];
-    setNotes([...updatedNotes, inputData]);
-    setInputData({ ...inputData, heading: '', text: '', date: getDate() });
+    setNotes([inputData, ...notes]);
+    setInputData({ title: '', text: '', date: getDate() });
+    showSubmitMessage();
+  };
+
+  const showSubmitMessage = () => {
+    setIsSubmitted(true);
+    setTimeout(() => setIsSubmitted(false), 2000);
   };
 
   return (
@@ -28,7 +34,7 @@ export default function Form({ notes, setNotes }) {
       <div>
         <input
           type="date"
-          aria-label="Date"
+          aria-label="date"
           name="date"
           id="date"
           required
@@ -42,25 +48,28 @@ export default function Form({ notes, setNotes }) {
         </label>
       </div>
       <input
-        onChange={e => setInputData({ ...inputData, heading: e.target.value })}
-        value={inputData.heading}
+        onChange={e => setInputData({ ...inputData, title: e.target.value })}
+        value={inputData.title}
         type="text"
-        aria-label="Heading"
-        name="heading"
+        aria-label="title"
+        name="title"
         maxLength="60"
         required
+        placeholder="What's it about?..."
       ></input>
       <textarea
         onChange={e => setInputData({ ...inputData, text: e.target.value })}
         value={inputData.text}
-        aria-label="Text"
+        aria-label="text"
         name="text"
         rows="10"
         cols="30"
         maxLength="280"
         required
+        placeholder="Write it down here..."
       ></textarea>
       <button type="submit">SAVE</button>
+      {isSubmitted ? <SubmitMessage>Your data has been submitted!</SubmitMessage> : ''}
     </StyledForm>
   );
 }
@@ -70,11 +79,16 @@ const StyledForm = styled.form`
   margin: 0.5rem;
   gap: 0.5rem;
   resize: none;
+  font-family: 'Open Sans', sans-serif;
 
   div {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    input {
+      vertical-align: center;
+    }
 
     svg {
       fill: #394a59;
@@ -95,6 +109,8 @@ const StyledForm = styled.form`
     border-radius: 4px;
     padding: 0.5rem;
     color: #394a59;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
   }
 
   textarea {
@@ -103,6 +119,8 @@ const StyledForm = styled.form`
     border-radius: 4px;
     padding: 0.5rem;
     color: #394a59;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
   }
 
   button {
@@ -114,4 +132,10 @@ const StyledForm = styled.form`
     padding: 0.5rem;
     cursor: pointer;
   }
+`;
+
+const SubmitMessage = styled.h3`
+  font-size: 24px;
+  color: green;
+  text-align: center;
 `;

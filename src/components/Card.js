@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export default function Card({ date, heading, text }) {
+export default function Card({ date, title, text }) {
   return (
     <Wrapper>
       <time>{date}</time>
-      <h2>{heading}</h2>
+      <h2>{title}</h2>
       <p>{text}</p>
     </Wrapper>
   );
