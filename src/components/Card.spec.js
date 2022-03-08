@@ -3,9 +3,9 @@ import Card from './Card.js';
 
 describe('Card', () => {
   it('renders date, heading and text', () => {
-    render(<Card date="22.01.2022" heading="Lorem ipsum" text="Lorem Ipsum" />);
+    render(<Card date="03/08/2022" title="Lorem ipsum" text="Lorem Ipsum" />);
 
-    const date = screen.getByText('22.01.2022');
+    const date = screen.getByText('03/08/2022');
     expect(date).toBeInTheDocument();
 
     const heading = screen.getByText('Lorem ipsum');
