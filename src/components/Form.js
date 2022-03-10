@@ -44,6 +44,7 @@ export default function Form({ notes, setNotes }) {
   const handleFormSubmit = e => {
     e.preventDefault();
     setNotes([inputData, ...notes]);
+    setInputData({ ...inputData, date: getDate(), title: '', text: '' });
     showSubmitMessage();
   };
 
