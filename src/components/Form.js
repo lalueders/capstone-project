@@ -112,6 +112,7 @@ const StyledForm = styled.form`
   gap: 0.5rem;
   resize: none;
   font-family: 'Open Sans', sans-serif;
+  color: #394a59;
 
   div {
     display: flex;
@@ -120,6 +121,7 @@ const StyledForm = styled.form`
 
     input {
       vertical-align: center;
+      background: #ffffff;
     }
 
     svg {
@@ -161,7 +163,7 @@ const StyledForm = styled.form`
     font-size: 1.25rem;
     border: none;
     border-radius: 4px;
-    padding: 0.5rem;
+    padding: 0.75rem;
     cursor: pointer;
   }
 `;
