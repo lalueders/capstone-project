@@ -1,8 +1,16 @@
 import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
+import { toBeChecked } from '@testing-library/jest-dom/dist/matchers';
 
 export default function Form({ notes, setNotes }) {
-  const [inputData, setInputData] = useState({ date: '', title: '', text: '', location: '' });
+  const [inputData, setInputData] = useState({
+    date: '',
+    title: '',
+    text: '',
+    location: '',
+  });
+
+  const [categories, setCategories] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [location, setLocation] = useState();
   const [status, setStatus] = useState(null);
@@ -15,7 +23,6 @@ export default function Form({ notes, setNotes }) {
       navigator.geolocation.getCurrentPosition(
         position => {
           setTimeout(() => setStatus(null), 1000);
-          setStatus('Locating...');
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
           async function fetchData() {
@@ -30,16 +37,24 @@ export default function Form({ notes, setNotes }) {
             fetchData();
           } catch (error) {
             console.error(error);
+            setStatus('Location not available!');
           }
         },
         () => {
-          setStatus('Location not available!');
-          setInputData({ ...inputData, date: getDate() });
+          setStatus('Location services are disabled!');
         }
       );
+      setInputData({ ...inputData, date: getDate() });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getDate = () => {
+    const today = new Date();
+    return (
+      today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2)
+    );
+  };
 
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -53,15 +68,64 @@ export default function Form({ notes, setNotes }) {
     setTimeout(() => setIsSubmitted(false), 2000);
   };
 
-  const getDate = () => {
-    const today = new Date();
-    return (
-      today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2)
-    );
+  const handleOnChangeCategories = e => {
+    if (e.target.checked) {
+      setCategories([...categories, e.target.value]);
+    } else {
+      const index = categories.indexOf(e.target.value);
+      categories.splice(index, 1);
+      setCategories(categories);
+    }
   };
 
   return (
     <StyledForm onSubmit={handleFormSubmit}>
+      <CheckboxWrapper>
+        <div>
+          <input
+            onChange={handleOnChangeCategories}
+            type="checkbox"
+            name="categories"
+            value="family"
+            id="family"
+            hidden
+          ></input>
+          <label htmlFor="family">family</label>
+        </div>
+        <div>
+          <input
+            onChange={handleOnChangeCategories}
+            type="checkbox"
+            name="categories"
+            value="friends"
+            id="friends"
+            hidden
+          ></input>
+          <label htmlFor="friends">friends</label>
+        </div>
+        <div>
+          <input
+            onChange={handleOnChangeCategories}
+            type="checkbox"
+            name="categories"
+            value="vacation"
+            id="vacation"
+            hidden
+          ></input>
+          <label htmlFor="vacation">vacation</label>
+        </div>
+        <div>
+          <input
+            onChange={handleOnChangeCategories}
+            type="checkbox"
+            name="categories"
+            value="others"
+            id="others"
+            hidden
+          ></input>
+          <label htmlFor="others">others</label>
+        </div>
+      </CheckboxWrapper>
       {status ? <p>{status}</p> : <p>{location}</p>}
       <div>
         <input
@@ -172,4 +236,30 @@ const SubmitMessage = styled.h3`
   font-size: 24px;
   color: green;
   text-align: center;
+`;
+
+const CheckboxWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin-bottom: 0.5rem;
+
+  label {
+    border-radius: 4px;
+    border: 1px solid #394a59;
+    padding: 0.5rem;
+    text-decoration: none;
+    background: #ffffff;
+    color: #394a59;
+    cursor: pointer;
+  }
+  input:checked ~ label {
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    padding: 0.5rem;
+    text-decoration: none;
+    background: #394a59;
+    color: #ffffff;
+    cursor: pointer;
+  }
 `;
