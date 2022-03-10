@@ -2,25 +2,49 @@ import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
 
 export default function Form({ notes, setNotes }) {
-  const [inputData, setInputData] = useState({ date: '', title: '', text: '' });
+  const [inputData, setInputData] = useState({ date: '', title: '', text: '', location: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [location, setLocation] = useState();
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
-    setInputData({ ...inputData, date: getDate() });
+    if (!navigator.geolocation) {
+      setStatus('Geolocation not supported!');
+    } else {
+      setStatus('Locating...');
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          setTimeout(() => setStatus(null), 1000);
+          setStatus('Locating...');
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          async function fetchData() {
+            const response = await fetch(
+              'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat + '&lon=' + lng
+            );
+            const data = await response.json();
+            setLocation(data.address.city + ', ' + data.address.suburb);
+            setInputData({ ...inputData, date: getDate(), location: data.address.city + ', ' + data.address.suburb });
+          }
+          try {
+            fetchData();
+          } catch (error) {
+            console.error(error);
+          }
+        },
+        () => {
+          setStatus('Location not available!');
+          setInputData({ ...inputData, date: getDate() });
+        }
+      );
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const getDate = () => {
-    const today = new Date();
-    return (
-      today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2)
-    );
-  };
 
   const handleFormSubmit = e => {
     e.preventDefault();
     setNotes([inputData, ...notes]);
-    setInputData({ title: '', text: '', date: getDate() });
+    setInputData({ ...inputData, date: getDate(), title: '', text: '' });
     showSubmitMessage();
   };
 
@@ -29,8 +53,16 @@ export default function Form({ notes, setNotes }) {
     setTimeout(() => setIsSubmitted(false), 2000);
   };
 
+  const getDate = () => {
+    const today = new Date();
+    return (
+      today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2)
+    );
+  };
+
   return (
     <StyledForm onSubmit={handleFormSubmit}>
+      {status ? <p>{status}</p> : <p>{location}</p>}
       <div>
         <input
           type="date"
@@ -84,7 +116,7 @@ const StyledForm = styled.form`
   div {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
 
     input {
       vertical-align: center;
@@ -92,7 +124,7 @@ const StyledForm = styled.form`
 
     svg {
       fill: #394a59;
-      width: 20px;
+      width: 24px;
     }
   }
 

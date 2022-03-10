@@ -6,7 +6,7 @@ import Form from './components/Form.js';
 function App() {
   // const testData = [
   //   {
-  //     date: '07.03.2022',
+  //     date: '2022/07/03',
   //     heading: 'Capstone Projekt gestartet',
   //     text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab...',
   //   },
@@ -38,7 +38,7 @@ function App() {
     <Grid>
       <Form setNotes={setNotes} notes={notes} />
       {notes.map((note, index) => (
-        <Card key={index} date={note.date} title={note.title} text={note.text} />
+        <Card key={index} date={note.date} title={note.title} text={note.text} location={note.location} />
       ))}
     </Grid>
   );
