@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-export default function Card({ date, title, text }) {
+export default function Card({ date, title, text, location }) {
   return (
     <Wrapper>
       <time>{date}</time>
+      {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
       <h2>{title}</h2>
       <p>{text}</p>
     </Wrapper>
