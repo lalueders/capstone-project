@@ -26,7 +26,11 @@ export default function Form({ notes, setNotes }) {
             setLocation(data.address.city + ', ' + data.address.suburb);
             setInputData({ ...inputData, date: getDate(), location: data.address.city + ', ' + data.address.suburb });
           }
-          fetchData();
+          try {
+            fetchData();
+          } catch (error) {
+            console.error(error);
+          }
         },
         () => {
           setStatus('Location not available!');
