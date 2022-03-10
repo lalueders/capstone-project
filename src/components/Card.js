@@ -19,10 +19,5 @@ const Wrapper = styled.section`
   padding: 0.5rem;
   color: #394a59;
   gap: 0.75rem;
-
-  h1 {
-    padding-bottom: 0.25rem;
-    font-size: 1.25rem;
-    border-bottom: 1px solid #394a59;
-  }
+  word-break: break-all;
 `;
