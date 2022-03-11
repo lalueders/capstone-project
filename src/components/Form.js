@@ -12,7 +12,6 @@ export default function Form({ notes, setNotes }) {
     categories: [],
   });
 
-  const [categories, setCategories] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [location, setLocation] = useState();
   const [status, setStatus] = useState(null);
@@ -73,7 +72,7 @@ export default function Form({ notes, setNotes }) {
     if (e.target.checked) {
       setInputData({ ...inputData, categories: [...inputData.categories, e.target.value] });
     } else {
-      const index = categories.indexOf(e.target.value);
+      const index = inputData.categories.indexOf(e.target.value);
       inputData.categories.splice(index, 1);
       setInputData(inputData);
     }
