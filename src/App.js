@@ -38,7 +38,14 @@ function App() {
     <Grid>
       <Form setNotes={setNotes} notes={notes} />
       {notes.map((note, index) => (
-        <Card key={index} date={note.date} title={note.title} text={note.text} location={note.location} />
+        <Card
+          key={index}
+          date={note.date}
+          title={note.title}
+          text={note.text}
+          location={note.location}
+          categories={note.categories}
+        />
       ))}
     </Grid>
   );
