@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
 import { toBeChecked } from '@testing-library/jest-dom/dist/matchers';
+import { isDOMComponent } from 'react-dom/test-utils';
 
 export default function Form({ notes, setNotes }) {
   const [inputData, setInputData] = useState({
@@ -8,6 +9,7 @@ export default function Form({ notes, setNotes }) {
     title: '',
     text: '',
     location: '',
+    categories: [],
   });
 
   const [categories, setCategories] = useState([]);
@@ -50,14 +52,13 @@ export default function Form({ notes, setNotes }) {
   }, []);
 
   const getDate = () => {
-    const today = new Date();
-    return (
-      today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2)
-    );
+    const [date] = new Date().toISOString().split('T');
+    return date;
   };
 
   const handleFormSubmit = e => {
     e.preventDefault();
+    // setInputData({ ...inputData, categories });
     setNotes([inputData, ...notes]);
     setInputData({ ...inputData, date: getDate(), title: '', text: '' });
     showSubmitMessage();
@@ -70,11 +71,11 @@ export default function Form({ notes, setNotes }) {
 
   const handleOnChangeCategories = e => {
     if (e.target.checked) {
-      setCategories([...categories, e.target.value]);
+      setInputData({ ...inputData, categories: [...inputData.categories, e.target.value] });
     } else {
       const index = categories.indexOf(e.target.value);
-      categories.splice(index, 1);
-      setCategories(categories);
+      inputData.categories.splice(index, 1);
+      setInputData(inputData);
     }
   };
 
