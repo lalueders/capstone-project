@@ -239,6 +239,11 @@ const SubmitMessage = styled.h3`
 `;
 
 const CheckboxWrapper = styled.div`
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
