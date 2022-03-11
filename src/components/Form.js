@@ -1,7 +1,5 @@
 import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
-import { toBeChecked } from '@testing-library/jest-dom/dist/matchers';
-import { isDOMComponent } from 'react-dom/test-utils';
 
 export default function Form({ notes, setNotes }) {
   const [inputData, setInputData] = useState({
@@ -11,7 +9,6 @@ export default function Form({ notes, setNotes }) {
     location: '',
     categories: [],
   });
-
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [location, setLocation] = useState();
   const [status, setStatus] = useState(null);
@@ -57,9 +54,8 @@ export default function Form({ notes, setNotes }) {
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    // setInputData({ ...inputData, categories });
     setNotes([inputData, ...notes]);
-    setInputData({ ...inputData, date: getDate(), title: '', text: '' });
+    setInputData({ ...inputData, date: getDate(), title: '', text: '', categories: [] });
     showSubmitMessage();
   };
 
@@ -74,7 +70,7 @@ export default function Form({ notes, setNotes }) {
     } else {
       const index = inputData.categories.indexOf(e.target.value);
       inputData.categories.splice(index, 1);
-      setInputData(inputData);
+      setInputData({ ...inputData, categories: [...inputData.categories] });
     }
   };
 
@@ -84,6 +80,7 @@ export default function Form({ notes, setNotes }) {
         <div>
           <input
             onChange={handleOnChangeCategories}
+            checked={inputData.categories.includes('family')}
             type="checkbox"
             name="categories"
             value="family"
@@ -95,6 +92,7 @@ export default function Form({ notes, setNotes }) {
         <div>
           <input
             onChange={handleOnChangeCategories}
+            checked={inputData.categories.includes('friends')}
             type="checkbox"
             name="categories"
             value="friends"
@@ -106,6 +104,7 @@ export default function Form({ notes, setNotes }) {
         <div>
           <input
             onChange={handleOnChangeCategories}
+            checked={inputData.categories.includes('vacation')}
             type="checkbox"
             name="categories"
             value="vacation"
@@ -117,6 +116,7 @@ export default function Form({ notes, setNotes }) {
         <div>
           <input
             onChange={handleOnChangeCategories}
+            checked={inputData.categories.includes('others')}
             type="checkbox"
             name="categories"
             value="others"
@@ -253,6 +253,16 @@ const CheckboxWrapper = styled.div`
     color: #394a59;
     cursor: pointer;
   }
+  input:checked ~ label {
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    padding: 0.5rem;
+    text-decoration: none;
+    background: #394a59;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
   input:checked ~ label {
     border-radius: 4px;
     border: 1px solid #ffffff;

@@ -1,6 +1,6 @@
 import Form from './Form';
 export default {
-  title: 'Form',
+  title: 'components/Form',
   component: Form,
 };
 
