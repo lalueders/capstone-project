@@ -9,11 +9,6 @@ const Template = args => <Card {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  // date: '07.03.2022',
-  // title: 'Capstone Projekt gestartet',
-  // text: 'Lorem ipsum dolor sit amet',
-  // categories: ['family'],
-
   date: '2022-03-07',
   title: 'Capstone Projekt gestartet',
   text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab... ',

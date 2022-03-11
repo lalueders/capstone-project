@@ -52,16 +52,16 @@ export default function Form({ notes, setNotes }) {
     return date;
   };
 
+  const showSubmitMessage = () => {
+    setIsSubmitted(true);
+    setTimeout(() => setIsSubmitted(false), 2000);
+  };
+
   const handleFormSubmit = e => {
     e.preventDefault();
     setNotes([inputData, ...notes]);
     setInputData({ ...inputData, date: getDate(), title: '', text: '', categories: [] });
     showSubmitMessage();
-  };
-
-  const showSubmitMessage = () => {
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 2000);
   };
 
   const handleOnChangeCategories = e => {
@@ -76,7 +76,7 @@ export default function Form({ notes, setNotes }) {
 
   return (
     <StyledForm onSubmit={handleFormSubmit}>
-      <CheckboxWrapper>
+      <StyledCategories>
         <div>
           <input
             onChange={handleOnChangeCategories}
@@ -125,9 +125,9 @@ export default function Form({ notes, setNotes }) {
           ></input>
           <label htmlFor="others">others</label>
         </div>
-      </CheckboxWrapper>
-      {status ? <p>{status}</p> : <p>{location}</p>}
-      <div>
+      </StyledCategories>
+      {status ? <StyledLocation>{status}</StyledLocation> : <StyledLocation>{location}</StyledLocation>}
+      <StyledDate>
         <input
           type="date"
           aria-label="date"
@@ -142,8 +142,8 @@ export default function Form({ notes, setNotes }) {
             <path d="M152 64H296V24C296 10.75 306.7 0 320 0C333.3 0 344 10.75 344 24V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H104V24C104 10.75 114.7 0 128 0C141.3 0 152 10.75 152 24V64zM48 248H128V192H48V248zM48 296V360H128V296H48zM176 296V360H272V296H176zM320 296V360H400V296H320zM400 192H320V248H400V192zM400 408H320V464H384C392.8 464 400 456.8 400 448V408zM272 408H176V464H272V408zM128 408H48V448C48 456.8 55.16 464 64 464H128V408zM272 192H176V248H272V192z" />
           </svg>
         </label>
-      </div>
-      <input
+      </StyledDate>
+      <StyledTitle
         onChange={e => setInputData({ ...inputData, title: e.target.value })}
         value={inputData.title}
         type="text"
@@ -152,8 +152,8 @@ export default function Form({ notes, setNotes }) {
         maxLength="60"
         required
         placeholder="What's it about?..."
-      ></input>
-      <textarea
+      ></StyledTitle>
+      <StyledTextarea
         onChange={e => setInputData({ ...inputData, text: e.target.value })}
         value={inputData.text}
         aria-label="text"
@@ -163,93 +163,32 @@ export default function Form({ notes, setNotes }) {
         maxLength="280"
         required
         placeholder="Write it down here..."
-      ></textarea>
-      <button type="submit">SAVE</button>
-      {isSubmitted ? <SubmitMessage>Your data has been submitted!</SubmitMessage> : ''}
+      ></StyledTextarea>
+      <StyledButton type="submit">SAVE</StyledButton>
+      {isSubmitted ? <StyledSubmitMessage>Your data has been submitted!</StyledSubmitMessage> : ''}
     </StyledForm>
   );
 }
 
 const StyledForm = styled.form`
-  display: grid;
   margin: 0.5rem;
-  gap: 0.5rem;
-  resize: none;
+  display: grid;
+  gap: 0.75rem;
   font-family: 'Open Sans', sans-serif;
   color: #394a59;
-
-  div {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-
-    input {
-      vertical-align: center;
-      background: #ffffff;
-    }
-
-    svg {
-      fill: #394a59;
-      width: 24px;
-    }
-  }
-
-  label {
-    cursor: pointer;
-    width: auto;
-    text-decoration: underline;
-    color: #394a59;
-  }
-
-  input {
-    resize: none;
-    border: 1px solid #394a59;
-    border-radius: 4px;
-    padding: 0.5rem;
-    color: #394a59;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1rem;
-  }
-
-  textarea {
-    resize: none;
-    border: 1px solid #394a59;
-    border-radius: 4px;
-    padding: 0.5rem;
-    color: #394a59;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1rem;
-  }
-
-  button {
-    background: #394a59;
-    color: white;
-    font-size: 1.25rem;
-    border: none;
-    border-radius: 4px;
-    padding: 0.75rem;
-    cursor: pointer;
-  }
 `;
 
-const SubmitMessage = styled.h3`
-  font-size: 24px;
-  color: green;
-  text-align: center;
-`;
-
-const CheckboxWrapper = styled.div`
-  user-select: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+const StyledCategories = styled.section`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  margin-bottom: 0.5rem;
+  gap: 0.5rem;
 
   label {
+    display: block;
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     border-radius: 4px;
     border: 1px solid #394a59;
     padding: 0.5rem;
@@ -259,6 +198,11 @@ const CheckboxWrapper = styled.div`
     cursor: pointer;
   }
   input:checked ~ label {
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     border-radius: 4px;
     border: 1px solid #ffffff;
     padding: 0.5rem;
@@ -266,15 +210,69 @@ const CheckboxWrapper = styled.div`
     background: #394a59;
     color: #ffffff;
     cursor: pointer;
+  }
+`;
+
+const StyledLocation = styled.p`
+  color: #394a59;
+  font-size: 1rem;
+`;
+
+const StyledDate = styled.section`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    color: #394a59;
+    background: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #394a59;
+    padding: 0.5rem;
   }
 
-  input:checked ~ label {
-    border-radius: 4px;
-    border: 1px solid #ffffff;
-    padding: 0.5rem;
-    text-decoration: none;
-    background: #394a59;
-    color: #ffffff;
-    cursor: pointer;
+  svg {
+    fill: #394a59;
+    width: 24px;
   }
+`;
+
+const StyledTitle = styled.input`
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  color: #394a59;
+  background: #ffffff;
+  resize: none;
+  border-radius: 4px;
+  border: 1px solid #394a59;
+  padding: 0.5rem;
+`;
+
+const StyledTextarea = styled.textarea`
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  color: #394a59;
+  background: #ffffff;
+  resize: none;
+  border-radius: 4px;
+  border: 1px solid #394a59;
+  padding: 0.5rem;
+`;
+
+const StyledButton = styled.button`
+  background: #394a59;
+  color: white;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem;
+  cursor: pointer;
+`;
+
+const StyledSubmitMessage = styled.p`
+  font-size: 24px;
+  color: green;
+  text-align: center;
 `;

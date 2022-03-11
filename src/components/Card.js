@@ -31,7 +31,6 @@ const Categories = styled.ul`
   padding: 0;
   list-style: none;
   display: flex;
-  justify-content: start;
   flex-wrap: wrap;
   gap: 0.5rem;
 
