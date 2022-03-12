@@ -174,11 +174,19 @@ export default function Form({ notes, setNotes }) {
 }
 
 const StyledForm = styled.form`
-  margin: 0.5rem;
+  height: calc(100vh - 48px);
+  width: 100vw;
+  position: absolute;
+  /* margin: 0.5rem; */
+  padding: 0.5rem;
   display: grid;
-  gap: 0.75rem;
+  gap: 0.5rem;
   font-family: 'Open Sans', sans-serif;
   color: #394a59;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  grid-template-rows: auto auto auto auto 1fr auto;
 `;
 
 const StyledCategories = styled.section`
@@ -233,7 +241,7 @@ const StyledDate = styled.section`
     background: #ffffff;
     border-radius: 4px;
     border: 1px solid #394a59;
-    padding: 0.5rem;
+    padding: 0.25rem;
   }
 
   svg {
@@ -267,7 +275,7 @@ const StyledTextarea = styled.textarea`
 
 const StyledButton = styled.button`
   background: #394a59;
-  color: white;
+  color: #dce6f2;
   font-size: 1.25rem;
   border: none;
   border-radius: 4px;

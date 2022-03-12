@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { Route, Routes, NavLink } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ListPage from './pages/ListPage.js';
 import FormPage from './pages/FormPage.js';
+import Navigation from './components/Navigation.js';
 
 function App() {
   // const testData = [
@@ -37,14 +38,7 @@ function App() {
 
   return (
     <Grid>
-      <Nav>
-        <NavLink to="/">
-          <button>List</button>
-        </NavLink>
-        <NavLink to="/form">
-          <button>Form</button>
-        </NavLink>
-      </Nav>
+      <Navigation />
       <Routes>
         <Route path="/" element={<ListPage notes={notes} />} />
         <Route path="form" element={<FormPage setNotes={setNotes} notes={notes} />} />
@@ -56,20 +50,8 @@ function App() {
 export default App;
 
 const Grid = styled.main`
+  height: 100vh;
   display: grid;
-  gap: 0.5rem;
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-  border: 1px solid;
-  margin: 0.5rem;
-  padding: 1rem;
-
-  button {
-    padding: 0.5rem;
-    cursor: pointer;
-  }
+  position: relative;
+  grid-template-rows: 48px 1fr;
 `;
