@@ -236,6 +236,7 @@ const StyledDate = styled.section`
   svg {
     fill: #394a59;
     width: 24px;
+    cursor: pointer;
   }
 `;
 
