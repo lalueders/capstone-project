@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Form({ notes, setNotes }) {
   const [inputData, setInputData] = useState({
@@ -12,6 +13,7 @@ export default function Form({ notes, setNotes }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [location, setLocation] = useState();
   const [status, setStatus] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -54,7 +56,10 @@ export default function Form({ notes, setNotes }) {
 
   const showSubmitMessage = () => {
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 2000);
+    setTimeout(function () {
+      setIsSubmitted(false);
+      navigate('../');
+    }, 2000);
   };
 
   const handleFormSubmit = e => {
@@ -158,14 +163,12 @@ export default function Form({ notes, setNotes }) {
         value={inputData.text}
         aria-label="text"
         name="text"
-        rows="10"
-        cols="30"
         maxLength="280"
         required
         placeholder="Write it down here..."
       ></StyledTextarea>
-      <StyledButton type="submit">SAVE</StyledButton>
       {isSubmitted ? <StyledSubmitMessage>Your data has been submitted!</StyledSubmitMessage> : ''}
+      <StyledButton type="submit">SAVE</StyledButton>
     </StyledForm>
   );
 }

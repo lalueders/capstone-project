@@ -2,17 +2,19 @@ import styled from 'styled-components';
 
 export default function Card({ date, title, text, location, categories }) {
   return (
-    <Wrapper>
-      <time>{date}</time>
-      {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
-      <h2>{title}</h2>
-      <p>{text}</p>
-      <Categories role="list">
-        {categories.map((category, index) => (
-          <li key={index}>{category}</li>
-        ))}
-      </Categories>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <time>{date}</time>
+        {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
+        <h2>{title}</h2>
+        <p>{text}</p>
+        <Categories role="list">
+          {categories.map((category, index) => (
+            <li key={index}>{category}</li>
+          ))}
+        </Categories>
+      </Wrapper>
+    </>
   );
 }
 
