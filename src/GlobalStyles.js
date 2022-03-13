@@ -6,7 +6,6 @@ export default createGlobalStyle`
     margin: 0;
   }
   body {
-    max-width: 400px;
     font-family: 'Open Sans', sans-serif;
     line-height: 1.2;
     background: #F2F0F0;

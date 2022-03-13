@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Form({ notes, setNotes }) {
   const [inputData, setInputData] = useState({
@@ -12,6 +13,7 @@ export default function Form({ notes, setNotes }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [location, setLocation] = useState();
   const [status, setStatus] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -54,7 +56,10 @@ export default function Form({ notes, setNotes }) {
 
   const showSubmitMessage = () => {
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 2000);
+    setTimeout(function () {
+      setIsSubmitted(false);
+      navigate('../');
+    }, 2000);
   };
 
   const handleFormSubmit = e => {
@@ -158,24 +163,24 @@ export default function Form({ notes, setNotes }) {
         value={inputData.text}
         aria-label="text"
         name="text"
-        rows="10"
-        cols="30"
         maxLength="280"
         required
         placeholder="Write it down here..."
       ></StyledTextarea>
-      <StyledButton type="submit">SAVE</StyledButton>
       {isSubmitted ? <StyledSubmitMessage>Your data has been submitted!</StyledSubmitMessage> : ''}
+      <StyledButton type="submit">SAVE</StyledButton>
     </StyledForm>
   );
 }
 
 const StyledForm = styled.form`
-  margin: 0.5rem;
+  height: calc(100vh - 64px);
+  padding: 0.5rem;
   display: grid;
-  gap: 0.75rem;
+  gap: 0.5rem;
   font-family: 'Open Sans', sans-serif;
   color: #394a59;
+  grid-template-rows: auto auto auto auto 1fr auto;
 `;
 
 const StyledCategories = styled.section`
@@ -230,12 +235,13 @@ const StyledDate = styled.section`
     background: #ffffff;
     border-radius: 4px;
     border: 1px solid #394a59;
-    padding: 0.5rem;
+    padding: 0.25rem;
   }
 
   svg {
     fill: #394a59;
-    width: 24px;
+    width: 20px;
+    cursor: pointer;
   }
 `;
 
@@ -263,7 +269,7 @@ const StyledTextarea = styled.textarea`
 
 const StyledButton = styled.button`
   background: #394a59;
-  color: white;
+  color: #dce6f2;
   font-size: 1.25rem;
   border: none;
   border-radius: 4px;

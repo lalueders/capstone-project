@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import Card from './components/Card.js';
-import Form from './components/Form.js';
+import { Route, Routes } from 'react-router-dom';
+import ListPage from './pages/ListPage.js';
+import FormPage from './pages/FormPage.js';
+import Navigation from './components/Navigation.js';
 
 function App() {
   // const testData = [
@@ -36,17 +38,11 @@ function App() {
 
   return (
     <Grid>
-      <Form setNotes={setNotes} notes={notes} />
-      {notes.map((note, index) => (
-        <Card
-          key={index}
-          date={note.date}
-          title={note.title}
-          text={note.text}
-          location={note.location}
-          categories={note.categories}
-        />
-      ))}
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<ListPage notes={notes} />} />
+        <Route path="form" element={<FormPage setNotes={setNotes} notes={notes} />} />
+      </Routes>
     </Grid>
   );
 }
@@ -54,6 +50,8 @@ function App() {
 export default App;
 
 const Grid = styled.main`
+  height: 100vh;
+  position: relative;
   display: grid;
-  gap: 0.5rem;
+  grid-template-rows: 64px auto;
 `;
