@@ -21,7 +21,7 @@ export default function ListPage({ notes }) {
 
 const StyledPage = styled.main`
   position: absolute;
-  top: 48px;
+  top: 64px;
   right: 0;
   left: 0;
   bottom: 0;

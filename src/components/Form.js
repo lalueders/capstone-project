@@ -174,18 +174,12 @@ export default function Form({ notes, setNotes }) {
 }
 
 const StyledForm = styled.form`
-  height: calc(100vh - 48px);
-  width: 100vw;
-  position: absolute;
-  /* margin: 0.5rem; */
+  height: calc(100vh - 64px);
   padding: 0.5rem;
   display: grid;
   gap: 0.5rem;
   font-family: 'Open Sans', sans-serif;
   color: #394a59;
-  left: 0;
-  right: 0;
-  bottom: 0;
   grid-template-rows: auto auto auto auto 1fr auto;
 `;
 
@@ -246,7 +240,7 @@ const StyledDate = styled.section`
 
   svg {
     fill: #394a59;
-    width: 24px;
+    width: 20px;
     cursor: pointer;
   }
 `;

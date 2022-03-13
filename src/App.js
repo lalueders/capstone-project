@@ -51,7 +51,7 @@ export default App;
 
 const Grid = styled.main`
   height: 100vh;
-  display: grid;
   position: relative;
-  grid-template-rows: 48px 1fr;
+  display: grid;
+  grid-template-rows: 64px auto;
 `;

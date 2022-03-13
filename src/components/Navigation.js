@@ -2,31 +2,29 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import iconFeather from '../assets/icon_feather_light.png';
-import iconBackArrow from '../assets/backArrow.png';
+import iconList from '../assets/icon_list--light.png';
 
 export default function Navigation() {
   return (
-    <Nav>
-      <NavLink to="/">
-        <ListButton>
-          <img src={iconBackArrow} alt="Cancel" />
-        </ListButton>
-      </NavLink>
-      <p>My Notes</p>
-      <NavLink to="/form">
-        <CreateButton>
-          <img src={iconFeather} alt="feather" />
-        </CreateButton>
-      </NavLink>
-    </Nav>
+    <StyledNav>
+      <StyledNavLink to="/">
+        <StyledButton>
+          <img src={iconList} alt=" " />
+        </StyledButton>
+      </StyledNavLink>
+      <Title>My Notes</Title>
+      <StyledNavLink to="/form">
+        <StyledButton>
+          <img src={iconFeather} alt=" " />
+        </StyledButton>
+      </StyledNavLink>
+    </StyledNav>
   );
 }
 
-const Nav = styled.nav`
-  display: grid;
-  background: #394a59;
+const StyledNav = styled.nav`
   position: fixed;
-  height: 2.5rem;
+  height: 64px;
   left: 0;
   right: 0;
   top: 0;
@@ -34,17 +32,18 @@ const Nav = styled.nav`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 0.5rem;
+  background: #394a59;
   border-bottom: 0.5rem solid #f2f0f0;
-  z-index: 1;
+  padding: 0 0.5rem;
+`;
 
-  p {
-    color: #dce6f2;
-    font-size: 1.25rem;
+const StyledNavLink = styled(NavLink)`
+  &.active {
+    opacity: 35%;
   }
 `;
 
-const CreateButton = styled.button`
+const StyledButton = styled.button`
   height: 40px;
   background: #394a59;
   border: none;
@@ -56,15 +55,7 @@ const CreateButton = styled.button`
   }
 `;
 
-const ListButton = styled.button`
-  height: 30px;
-  background: #394a59;
-  border: none;
-  border-radius: 8px;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-
-  img {
-    height: 100%;
-  }
+const Title = styled.p`
+  color: #dce6f2;
+  font-size: 1.25rem;
 `;
