@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import Card from '../components/Card';
-import FormSubmitMessage from '../components/FormSubmitMessage';
+import FormSubmitMessage from '../components/FormSubmitMessage.js';
+import EmptyListMessage from '../components/EmptyListMessage.js';
 
 export default function ListPage({ notes, isFormSubmitted }) {
   return (
     <StyledPage>
-      {isFormSubmitted ? <FormSubmitMessage>Your data has been submitted!</FormSubmitMessage> : ''}
-
+      {notes.length === 0 ? <EmptyListMessage /> : ''}
+      {isFormSubmitted ? <FormSubmitMessage /> : ''}
       {notes.map((note, index) => (
         <Card
           key={index}
@@ -27,5 +28,4 @@ const StyledPage = styled.main`
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: -1;
 `;

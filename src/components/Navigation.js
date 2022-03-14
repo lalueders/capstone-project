@@ -28,6 +28,7 @@ const StyledNav = styled.nav`
   left: 0;
   right: 0;
   top: 0;
+  z-index: 1;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
