@@ -268,9 +268,3 @@ const StyledButton = styled.button`
   padding: 0.75rem;
   cursor: pointer;
 `;
-
-// const StyledSubmitMessage = styled.p`
-//   font-size: 24px;
-//   color: green;
-//   text-align: center;
-// `;
