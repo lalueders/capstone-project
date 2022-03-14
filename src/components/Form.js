@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Form({ notes, setNotes }) {
+export default function Form({ notes, setNotes, showFormSubmitMessage }) {
   const [inputData, setInputData] = useState({
     date: '',
     title: '',
@@ -10,7 +10,7 @@ export default function Form({ notes, setNotes }) {
     location: '',
     categories: [],
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [location, setLocation] = useState();
   const [status, setStatus] = useState(null);
   const navigate = useNavigate();
@@ -54,19 +54,12 @@ export default function Form({ notes, setNotes }) {
     return date;
   };
 
-  const showSubmitMessage = () => {
-    setIsSubmitted(true);
-    setTimeout(function () {
-      setIsSubmitted(false);
-      navigate('../');
-    }, 2000);
-  };
-
   const handleFormSubmit = e => {
     e.preventDefault();
     setNotes([inputData, ...notes]);
     setInputData({ ...inputData, date: getDate(), title: '', text: '', categories: [] });
-    showSubmitMessage();
+    navigate('../');
+    showFormSubmitMessage();
   };
 
   const handleOnChangeCategories = e => {
@@ -167,7 +160,6 @@ export default function Form({ notes, setNotes }) {
         required
         placeholder="Write it down here..."
       ></StyledTextarea>
-      {isSubmitted ? <StyledSubmitMessage>Your data has been submitted!</StyledSubmitMessage> : ''}
       <StyledButton type="submit">SAVE</StyledButton>
     </StyledForm>
   );
@@ -277,8 +269,8 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledSubmitMessage = styled.p`
-  font-size: 24px;
-  color: green;
-  text-align: center;
-`;
+// const StyledSubmitMessage = styled.p`
+//   font-size: 24px;
+//   color: green;
+//   text-align: center;
+// `;

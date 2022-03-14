@@ -35,13 +35,24 @@ function App() {
   // ];
 
   const [notes, setNotes] = useState([]);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  const showFormSubmitMessage = () => {
+    setIsFormSubmitted(true);
+    setTimeout(function () {
+      setIsFormSubmitted(false);
+    }, 2000);
+  };
 
   return (
     <Grid>
       <Navigation />
       <Routes>
-        <Route path="/" element={<ListPage notes={notes} />} />
-        <Route path="form" element={<FormPage setNotes={setNotes} notes={notes} />} />
+        <Route path="/" element={<ListPage notes={notes} isFormSubmitted={isFormSubmitted} />} />
+        <Route
+          path="form"
+          element={<FormPage setNotes={setNotes} notes={notes} showFormSubmitMessage={showFormSubmitMessage} />}
+        />
       </Routes>
     </Grid>
   );

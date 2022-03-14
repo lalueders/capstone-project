@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-
 import Card from '../components/Card';
+import FormSubmitMessage from '../components/FormSubmitMessage';
 
-export default function ListPage({ notes }) {
+export default function ListPage({ notes, isFormSubmitted }) {
   return (
     <StyledPage>
+      {isFormSubmitted ? <FormSubmitMessage>Your data has been submitted!</FormSubmitMessage> : ''}
+
       {notes.map((note, index) => (
         <Card
           key={index}
@@ -20,7 +22,7 @@ export default function ListPage({ notes }) {
 }
 
 const StyledPage = styled.main`
-  position: absolute;
+  position: relative;
   top: 64px;
   right: 0;
   left: 0;

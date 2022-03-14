@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Form from '../components/Form';
 
-export default function FormPage({ notes, setNotes }) {
+export default function FormPage({ notes, setNotes, showFormSubmitMessage }) {
   return (
     <StyledPage>
-      <Form setNotes={setNotes} notes={notes} />
+      <Form setNotes={setNotes} notes={notes} showFormSubmitMessage={showFormSubmitMessage} />
     </StyledPage>
   );
 }
