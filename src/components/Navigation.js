@@ -9,13 +9,13 @@ export default function Navigation() {
     <StyledNav>
       <StyledNavLink to="/">
         <StyledButton>
-          <img src={iconList} alt=" " />
+          <img src={iconList} alt="go to list" />
         </StyledButton>
       </StyledNavLink>
       <Title>My Notes</Title>
       <StyledNavLink to="/form">
         <StyledButton>
-          <img src={iconFeather} alt=" " />
+          <img src={iconFeather} alt="create note" />
         </StyledButton>
       </StyledNavLink>
     </StyledNav>
