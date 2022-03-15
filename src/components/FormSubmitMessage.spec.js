@@ -9,7 +9,7 @@ describe('FormSubmitMessage', () => {
         <FormSubmitMessage />
       </MemoryRouter>
     );
-    const message = screen.getByText('Got it!... but for the moment your notes will be deleted with page refresh 😟');
+    const message = screen.getByText('Got it!... But f the moment your notes will be deleted at page refresh 😟');
     expect(message).toBeInTheDocument();
   });
 });
