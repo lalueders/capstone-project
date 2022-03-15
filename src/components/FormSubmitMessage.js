@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 export default function FormSubmitMessage() {
-  return <StyledMessage>Got it!... But f the moment your notes will be deleted at page refresh 😟</StyledMessage>;
+  return <StyledMessage>Got it!... But for the moment your notes will be deleted at page refresh 😟</StyledMessage>;
 }
 
 const StyledMessage = styled.p`

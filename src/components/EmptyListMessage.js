@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 export default function EmptyListMessage() {
   const navigate = useNavigate();
 
-  function handleClick(e) {
+  function handleClick() {
     navigate('../form');
   }
 
   return (
-    <StyledMessage onClick={handleClick}>
+    <StyledMessage role="button" onClick={handleClick}>
       You don't have any notes yet! What's on your mind? Write it down right here...
       <StyledIcon src={iconFeather} alt="feather" />
     </StyledMessage>
@@ -19,10 +19,6 @@ export default function EmptyListMessage() {
 
 const StyledMessage = styled.div`
   user-select: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   cursor: pointer;
 
   color: #394a59;

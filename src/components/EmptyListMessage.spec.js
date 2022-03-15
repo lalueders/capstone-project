@@ -11,8 +11,9 @@ describe('FormSubmitMessage', () => {
     );
     // const test = screen.getByRole('');
     const message = screen.getByText("You don't have any notes yet! What's on your mind? Write it down right here...");
-    expect(message).toBeInTheDocument();
     const icon = screen.getByRole('img', { name: /feather/i });
+
+    expect(message).toBeInTheDocument();
     expect(icon).toBeInTheDocument();
   });
 });
