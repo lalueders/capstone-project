@@ -6,35 +6,41 @@ import FormPage from './pages/FormPage.js';
 import Navigation from './components/Navigation.js';
 
 function App() {
-  // const testData = [
-  //   {
-  //     date: '2022/07/03',
-  //     heading: 'Capstone Projekt gestartet',
-  //     text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab...',
-  //   },
-  //   {
-  //     date: '10.01.2022',
-  //     heading: 'Das Bootcamp geht los!',
-  //     text: 'Man munkelt da kommt ganz schön viel Arbeit auf mich zu',
-  //   },
-  //   {
-  //     date: '03.01.2022',
-  //     heading: 'Family zu Besuch in HH',
-  //     text: 'Die Karlsruher haben es auch mal in den Norden geschafft! Emma ist echt groß geworden und Lisa wachsen immernoch keine Haare',
-  //   },
-  //   {
-  //     date: '15.11.2021',
-  //     heading: 'Leyla ist da!',
-  //     text: 'Na endlich! Happy Welcome to the World Leyla Hayal!!! Du siehts zwar bischen aus wie Peter Altmeier aber das verwächst sich bestimmt noch ;) 2.25 Uhr, 3500g, 53cm',
-  //   },
-  //   {
-  //     date: '03.10.2021',
-  //     heading: 'Trip nach Dresden',
-  //     text: 'Immer wieder schön mit den Jungs. Robert kann immer noch trinken als wäre er zwanzig. Beeindruckend!',
-  //   },
-  // ];
+  // const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState([
+    {
+      date: '2022-07-03',
+      title: 'Capstone Projekt gestartet',
+      text: 'Es geht los! Mal schauen, was m,an in vier Wochen so schafft...',
+      location: 'Hamburg, Eimsbüttel',
+      categories: ['job', 'carrer'],
+    },
 
-  const [notes, setNotes] = useState([]);
+    {
+      date: '2022-01-10',
+      title: 'Das Bootcamp geht los!',
+      text: 'Man sagt da kommt ganz schön viel Arbeit auf mich zu...',
+      location: 'Hamburg, Eimsbüttel',
+      categories: ['job', 'carrer'],
+    },
+
+    {
+      date: '2022-1-03',
+      title: 'Family zu Besuch in HH',
+      text: 'Die Karlsruher haben es auch mal in den Norden geschafft! Emma ist echt groß geworden und Lisa wachsen immernoch keine Haare',
+      location: 'Hamburg, Rotherbaum',
+      categories: ['family', 'vacation'],
+    },
+
+    {
+      date: '2022-11-15',
+      title: 'Leyla ist da!',
+      text: 'Na endlich! Happy Welcome to the World Leyla Hayal!!! 2.25 Uhr, 3500g, 53cm',
+      location: 'Hamburg, Eimsbüttel',
+      categories: ['family'],
+    },
+  ]);
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const showFormSubmitMessage = () => {
