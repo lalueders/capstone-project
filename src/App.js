@@ -39,9 +39,7 @@ function App() {
 
   const showFormSubmitMessage = () => {
     setIsFormSubmitted(true);
-    setTimeout(function () {
-      setIsFormSubmitted(false);
-    }, 2000);
+    setTimeout(() => setIsFormSubmitted(false), 3000);
   };
 
   return (

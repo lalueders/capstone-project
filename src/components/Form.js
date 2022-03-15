@@ -182,10 +182,6 @@ const StyledCategories = styled.section`
   label {
     display: block;
     user-select: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     border-radius: 4px;
     border: 1px solid #394a59;
     padding: 0.5rem;
@@ -196,10 +192,6 @@ const StyledCategories = styled.section`
   }
   input:checked ~ label {
     user-select: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     border-radius: 4px;
     border: 1px solid #ffffff;
     padding: 0.5rem;
