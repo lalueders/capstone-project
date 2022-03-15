@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Card from '../components/Card';
 import FormSubmitMessage from '../components/FormSubmitMessage.js';
 import EmptyListMessage from '../components/EmptyListMessage.js';
+import AddButton from '../components/AddButton';
 
 export default function ListPage({ notes, isFormSubmitted }) {
   return (
@@ -18,6 +19,7 @@ export default function ListPage({ notes, isFormSubmitted }) {
           categories={note.categories}
         />
       ))}
+      <AddButton />
     </StyledPage>
   );
 }

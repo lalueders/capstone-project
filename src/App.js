@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import ListPage from './pages/ListPage.js';
 import FormPage from './pages/FormPage.js';
 import Navigation from './components/Navigation.js';
+import AddButton from './components/AddButton';
 
 function App() {
   // const [notes, setNotes] = useState([]);
@@ -68,5 +69,6 @@ const Grid = styled.main`
   height: 100vh;
   position: relative;
   display: grid;
-  grid-template-rows: 64px auto;
+  grid-template-rows: 64px auto 1fr;
+  justify-items: center;
 `;
