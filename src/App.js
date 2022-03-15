@@ -64,7 +64,7 @@ function App() {
 
 export default App;
 
-const Grid = styled.main`
+const Grid = styled.div`
   height: 100vh;
   position: relative;
   display: grid;
