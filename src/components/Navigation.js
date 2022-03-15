@@ -13,9 +13,9 @@ export default function Navigation() {
         </StyledButton>
       </StyledNavLink>
       <Title>My Notes</Title>
-      <StyledNavLink to="/form">
+      <StyledNavLink to="/add">
         <StyledButton>
-          <img src={iconFeather} alt="create note" />
+          <img src={iconFeather} alt="add note" />
         </StyledButton>
       </StyledNavLink>
     </StyledNav>

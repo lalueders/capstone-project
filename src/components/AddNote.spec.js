@@ -1,20 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import Form from './Form';
-
-// const mockedNavigate = jest.fn();
-
-// jest.mock('react-router-dom', () => ({
-//   ...jest.requireActual('react-router-dom'),
-//   useNavigate: () => mockedNavigate,
-// }));
+import AddNote from './AddNote';
 
 describe('Form', () => {
   it('renders a form with three inputs and a button', () => {
     render(
       <MemoryRouter>
-        <Form />
+        <AddNote />
       </MemoryRouter>
     );
     const dateInput = screen.getByLabelText('date');
@@ -42,7 +35,7 @@ describe('Form', () => {
     ];
     render(
       <MemoryRouter>
-        <Form
+        <AddNote
           setNotes={mockSetNotes}
           notes={testData}
           onSubmit={mockHandleFormSubmit}
@@ -50,11 +43,10 @@ describe('Form', () => {
         />
       </MemoryRouter>
     );
-    // screen.getAllByRole('');
+
     const titleInput = screen.getByRole('textbox', { name: /title/i });
     const textInput = screen.getByRole('textbox', { name: /text/i });
     const dateInput = screen.getByLabelText('date');
-
     const submitButton = screen.getByRole('button', { name: /save/i });
 
     userEvent.type(titleInput, 'title');

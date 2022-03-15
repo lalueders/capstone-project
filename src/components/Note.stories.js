@@ -1,11 +1,11 @@
-import Card from './Card.js';
+import Note from './Note.js';
 
 export default {
-  title: 'components/Card',
-  component: Card,
+  title: 'components/Note',
+  component: Note,
 };
 
-const Template = args => <Card {...args} />;
+const Template = args => <Note {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

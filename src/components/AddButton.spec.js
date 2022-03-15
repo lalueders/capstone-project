@@ -10,8 +10,8 @@ describe('AddButton', () => {
       </MemoryRouter>
     );
 
-    const button = screen.getByRole('img', { name: /create note/i });
-    const icon = screen.getByRole('img', { name: /create note/i });
+    const button = screen.getByRole('img', { name: /add note/i });
+    const icon = screen.getByRole('img', { name: /add note/i });
 
     expect(button).toBeInTheDocument();
     expect(icon).toBeInTheDocument();

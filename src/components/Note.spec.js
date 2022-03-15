@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 
-import Card from './Card.js';
+import Note from './Note.js';
 
-describe('Card', () => {
+describe('Note', () => {
   const mapData = ['family', 'friends'];
   it('renders date, location, title and text', () => {
     render(
-      <Card
+      <Note
         categories={mapData}
         date="2022-07-09"
         location="Hamburg, Rotherbaum"

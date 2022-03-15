@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import Card from '../components/Card';
+import Note from '../components/Note';
 import FormSubmitMessage from '../components/FormSubmitMessage.js';
 import EmptyListMessage from '../components/EmptyListMessage.js';
 import AddButton from '../components/AddButton';
 
-export default function ListPage({ notes, isFormSubmitted }) {
+export default function ShowNotePage({ notes, isFormSubmitted }) {
   return (
     <StyledPage>
       {notes.length === 0 ? <EmptyListMessage /> : ''}
       {isFormSubmitted ? <FormSubmitMessage /> : ''}
       {notes.map((note, index) => (
-        <Card
+        <Note
           key={index}
           date={note.date}
           title={note.title}

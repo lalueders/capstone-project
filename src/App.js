@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ListPage from './pages/ListPage.js';
-import FormPage from './pages/FormPage.js';
+import ShowNotePage from './pages/ShowNotePage.js';
+import AddNotePage from './pages/AddNotePage.js';
 import Navigation from './components/Navigation.js';
 
 function App() {
@@ -52,10 +52,10 @@ function App() {
     <Grid>
       <Navigation />
       <Routes>
-        <Route path="/" element={<ListPage notes={notes} isFormSubmitted={isFormSubmitted} />} />
+        <Route path="/" element={<ShowNotePage notes={notes} isFormSubmitted={isFormSubmitted} />} />
         <Route
-          path="form"
-          element={<FormPage setNotes={setNotes} notes={notes} showFormSubmitMessage={showFormSubmitMessage} />}
+          path="add"
+          element={<AddNotePage setNotes={setNotes} notes={notes} showFormSubmitMessage={showFormSubmitMessage} />}
         />
       </Routes>
     </Grid>

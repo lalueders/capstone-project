@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Card({ date, title, text, location, categories }) {
+export default function Note({ date, title, text, location, categories }) {
   return (
     <>
       <Wrapper>

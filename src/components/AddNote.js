@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Form({ notes, setNotes, showFormSubmitMessage }) {
+export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
   const [inputData, setInputData] = useState({
     date: '',
     title: '',
