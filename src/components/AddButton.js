@@ -22,6 +22,7 @@ const Button = styled.button`
   border: none;
   padding: 0.5rem;
   box-shadow: 2px 2px 6px 0px #a3afbf;
+  cursor: pointer;
   img {
     width: 45px;
   }

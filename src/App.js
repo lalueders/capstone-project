@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import ListPage from './pages/ListPage.js';
 import FormPage from './pages/FormPage.js';
 import Navigation from './components/Navigation.js';
-import AddButton from './components/AddButton';
 
 function App() {
   // const [notes, setNotes] = useState([]);
