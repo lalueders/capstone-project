@@ -9,9 +9,9 @@ export default function ShowNotePage({ notes, isFormSubmitted }) {
     <StyledPage>
       {notes.length === 0 ? <EmptyListMessage /> : ''}
       {isFormSubmitted ? <FormSubmitMessage /> : ''}
-      {notes.map((note, index) => (
+      {notes.map(note => (
         <Note
-          key={index}
+          key={note.id}
           date={note.date}
           title={note.title}
           text={note.text}

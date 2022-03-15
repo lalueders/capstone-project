@@ -1,9 +1,11 @@
 import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
   const [inputData, setInputData] = useState({
+    id: nanoid(),
     date: '',
     title: '',
     text: '',
@@ -60,6 +62,7 @@ export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
     setInputData({ ...inputData, date: getDate(), title: '', text: '', categories: [] });
     navigate('../');
     showFormSubmitMessage();
+    console.log(inputData);
   };
 
   const handleOnChangeCategories = e => {

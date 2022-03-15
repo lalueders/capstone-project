@@ -52,7 +52,10 @@ function App() {
     <Grid>
       <Navigation />
       <Routes>
-        <Route path="/" element={<ShowNotePage notes={notes} isFormSubmitted={isFormSubmitted} />} />
+        <Route
+          path="/"
+          element={<ShowNotePage setNotes={setNotes} notes={notes} isFormSubmitted={isFormSubmitted} />}
+        />
         <Route
           path="add"
           element={<AddNotePage setNotes={setNotes} notes={notes} showFormSubmitMessage={showFormSubmitMessage} />}
@@ -68,6 +71,6 @@ const Grid = styled.div`
   height: 100vh;
   position: relative;
   display: grid;
-  grid-template-rows: 64px auto 1fr;
+  grid-template-rows: 64px auto;
   justify-items: center;
 `;
