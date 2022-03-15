@@ -25,6 +25,7 @@ export default function ListPage({ notes, isFormSubmitted }) {
 }
 
 const StyledPage = styled.main`
+  width: 100%;
   position: relative;
   top: 64px;
   right: 0;
