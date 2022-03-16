@@ -29,7 +29,6 @@ function App() {
               setNotes={setNotes}
               notes={notes}
               isFormSubmitted={isFormSubmitted}
-              // handleDeleteNote={deleteNote}
               deleteNote={deleteNote}
             />
           }
