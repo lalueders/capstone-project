@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import AddNote from '../components/AddNoteTest';
+import AddNote from '../components/AddNote';
 
 export default function AddNotePage({ notes, setNotes, showFormSubmitMessage }) {
   return (
