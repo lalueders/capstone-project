@@ -11,7 +11,7 @@ export default function EditNote({ noteToEdit }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      date: noteToEdit.date,
+      date: noteToEdit.date.split('-').reverse().join('-'),
       location: noteToEdit.location,
       title: noteToEdit.title,
       text: noteToEdit.text,
@@ -27,6 +27,11 @@ export default function EditNote({ noteToEdit }) {
           console.log(data);
         })}
       >
+        <StyledList role="list">
+          {noteToEdit.categories.map(category => (
+            <li key={category}>{category}</li>
+          ))}
+        </StyledList>
         <StyledDateInput>
           <input
             {...register('date', {
@@ -94,9 +99,9 @@ const Wrapper = styled.div`
 const StyledForm = styled.form`
   height: 100%;
   display: grid;
-  grid-template-rows: auto auto auto auto 1fr auto;
+  grid-template-rows: auto auto auto auto auto 1fr auto;
   gap: 0.5rem;
-  padding: 0.5rem;
+
   font-family: 'Open Sans', sans-serif;
   color: #394a59;
 `;
@@ -172,4 +177,21 @@ const StyledButton = styled.button`
   border-radius: 4px;
   padding: 0.75rem;
   cursor: pointer;
+`;
+
+const StyledList = styled.ul`
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  li {
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    padding: 0.5rem;
+    text-decoration: none;
+    background: #394a59;
+    color: #ffffff;
+  }
 `;
