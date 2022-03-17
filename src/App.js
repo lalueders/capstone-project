@@ -23,12 +23,16 @@ function App() {
   };
 
   const editNote = id => {
-    console.log('Click on edit on App.js');
     setNoteToEdit(notes.find(note => note.id === id));
     navigate('/edit');
   };
-  console.log(noteToEdit);
 
+  const updateNote = data => {
+    const noteToUpdate = notes.findIndex(note => note.id === data.id);
+    setNotes(notes, notes.splice(noteToUpdate, 1, data));
+  };
+
+  console.log(notes);
   return (
     <Grid>
       <Navigation />
@@ -55,7 +59,10 @@ function App() {
             />
           }
         />
-        <Route path="edit" element={<EditNotePage noteToEdit={noteToEdit} />} />
+        <Route
+          path="edit"
+          element={<EditNotePage noteToEdit={noteToEdit} updateNote={updateNote} />}
+        />
       </Routes>
     </Grid>
   );

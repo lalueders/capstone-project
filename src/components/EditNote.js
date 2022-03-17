@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-export default function EditNote({ noteToEdit }) {
+export default function EditNote({ updateNote, noteToEdit }) {
   const navigate = useNavigate();
   const {
     register,
@@ -11,20 +11,21 @@ export default function EditNote({ noteToEdit }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      id: noteToEdit.id,
       date: noteToEdit.date,
-      location: noteToEdit.location,
       title: noteToEdit.title,
       text: noteToEdit.text,
+      location: noteToEdit.location,
     },
   });
-
-  console.log(watch());
 
   return (
     <Wrapper>
       <StyledForm
         onSubmit={handleSubmit(data => {
-          console.log(data);
+          // console.log(noteToEdit.categories);
+          data.categories = noteToEdit.categories;
+          updateNote(data);
         })}
       >
         <StyledList role="list">
