@@ -14,9 +14,13 @@ function App() {
     setTimeout(() => setIsFormSubmitted(false), 1500);
   };
 
-  function deleteNote(id) {
+  const deleteNote = id => {
     setNotes(notes.filter(note => note.id !== id));
-  }
+  };
+
+  const editNote = note => {
+    console.log(note);
+  };
 
   return (
     <Grid>
@@ -30,6 +34,7 @@ function App() {
               notes={notes}
               isFormSubmitted={isFormSubmitted}
               deleteNote={deleteNote}
+              editNote={editNote}
             />
           }
         />

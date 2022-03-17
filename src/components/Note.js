@@ -2,10 +2,14 @@ import styled from 'styled-components';
 import editIcon from '../assets/icon_edit.png';
 import trashIcon from '../assets/icon_trash.png';
 
-export default function Note({ deleteNote, date, title, text, location, categories }) {
+export default function Note({ editNote, deleteNote, date, title, text, location, categories }) {
+  const handleOnClickEdit = () => {
+    editNote();
+  };
+
   return (
     <Wrapper>
-      <EditButton>
+      <EditButton onClick={handleOnClickEdit}>
         <img src={editIcon} alt="edit note" />
       </EditButton>
       <time>{date}</time>
