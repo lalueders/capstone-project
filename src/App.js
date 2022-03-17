@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ShowNotePage from './pages/ShowNotePage.js';
 import AddNotePage from './pages/AddNotePage.js';
 import EditNotePage from './pages/EditNotePage.js';
@@ -8,14 +9,9 @@ import Navigation from './components/Navigation.js';
 
 function App() {
   const [notes, setNotes] = useState([]);
-  const [noteToEdit, setNoteToEdit] = useState({
-    date: '07-09-2022',
-    location: 'Hamburg, Rotherbaum',
-    title: 'Capstone Projekt gestartet',
-    text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab...',
-    categories: ['vacation', 'family'],
-  });
+  const [noteToEdit, setNoteToEdit] = useState();
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const showFormSubmitMessage = () => {
     setIsFormSubmitted(true);
@@ -26,16 +22,19 @@ function App() {
     setNotes(notes.filter(note => note.id !== id));
   };
 
-  const editNote = note => {
-    setNoteToEdit(note);
+  const editNote = id => {
+    console.log('Click on edit on App.js');
+    setNoteToEdit(notes.find(note => note.id === id));
+    navigate('/edit');
   };
+  console.log(noteToEdit);
 
   return (
     <Grid>
       <Navigation />
       <Routes>
         <Route
-          path="/..."
+          path="/"
           element={
             <ShowNotePage
               setNotes={setNotes}
@@ -56,7 +55,7 @@ function App() {
             />
           }
         />
-        <Route path="/" element={<EditNotePage noteToEdit={noteToEdit} />} />
+        <Route path="edit" element={<EditNotePage noteToEdit={noteToEdit} />} />
       </Routes>
     </Grid>
   );

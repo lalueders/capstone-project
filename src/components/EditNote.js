@@ -11,7 +11,7 @@ export default function EditNote({ noteToEdit }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      date: noteToEdit.date.split('-').reverse().join('-'),
+      date: noteToEdit.date,
       location: noteToEdit.location,
       title: noteToEdit.title,
       text: noteToEdit.text,
@@ -78,10 +78,10 @@ export default function EditNote({ noteToEdit }) {
         ></StyledTextarea>
         <p>{errors.text?.message}</p>
         <SubmitWrapper>
-          <StyledButton type="submit">SAVE</StyledButton>
           <StyledButton type="button" onClick={() => navigate('/')}>
             CANCEL
           </StyledButton>
+          <StyledButton type="submit">SAVE</StyledButton>
         </SubmitWrapper>
       </StyledForm>
     </Wrapper>
