@@ -9,7 +9,7 @@ import Navigation from './components/Navigation.js';
 function App() {
   const [notes, setNotes] = useState([]);
   const [noteToEdit, setNoteToEdit] = useState({
-    date: '2022-07-09',
+    date: '07-09-2022',
     location: 'Hamburg, Rotherbaum',
     title: 'Capstone Projekt gestartet',
     text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab...',
