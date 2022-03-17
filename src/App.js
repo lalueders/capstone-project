@@ -7,6 +7,7 @@ import Navigation from './components/Navigation.js';
 
 function App() {
   const [notes, setNotes] = useState([]);
+  const [noteToEdit, setNoteToEdit] = useState();
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const showFormSubmitMessage = () => {
@@ -19,7 +20,7 @@ function App() {
   };
 
   const editNote = note => {
-    console.log(note);
+    setNoteToEdit(note);
   };
 
   return (
