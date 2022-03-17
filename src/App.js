@@ -8,7 +8,13 @@ import Navigation from './components/Navigation.js';
 
 function App() {
   const [notes, setNotes] = useState([]);
-  const [noteToEdit, setNoteToEdit] = useState();
+  const [noteToEdit, setNoteToEdit] = useState({
+    date: '2022-07-09',
+    location: 'Hamburg, Rotherbaum',
+    title: 'Capstone Projekt gestartet',
+    text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab...',
+    categories: ['vacation', 'family'],
+  });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const showFormSubmitMessage = () => {
@@ -29,7 +35,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route
-          path="/"
+          path="/..."
           element={
             <ShowNotePage
               setNotes={setNotes}
@@ -50,7 +56,7 @@ function App() {
             />
           }
         />
-        <Route path="edit" element={<EditNotePage />} />
+        <Route path="/" element={<EditNotePage noteToEdit={noteToEdit} />} />
       </Routes>
     </Grid>
   );

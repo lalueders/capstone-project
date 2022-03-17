@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro';
 import EditNote from '../components/EditNote';
 
-export default function EditNotePage() {
+export default function EditNotePage({ noteToEdit }) {
   return (
     <StyledPage>
-      <EditNote />
+      <EditNote noteToEdit={noteToEdit} />
     </StyledPage>
   );
 }
