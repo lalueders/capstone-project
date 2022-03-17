@@ -23,8 +23,11 @@ export default function EditNote({ updateNote, noteToEdit }) {
     <Wrapper>
       <StyledForm
         onSubmit={handleSubmit(data => {
-          // console.log(noteToEdit.categories);
-          data.categories = noteToEdit.categories;
+          if (noteToEdit.categories.length === 0) {
+            data.categories = ['others'];
+          } else {
+            data.categories = noteToEdit.categories;
+          }
           updateNote(data);
         })}
       >

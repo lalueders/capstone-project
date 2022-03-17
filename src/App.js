@@ -30,9 +30,9 @@ function App() {
   const updateNote = data => {
     const noteToUpdate = notes.findIndex(note => note.id === data.id);
     setNotes(notes, notes.splice(noteToUpdate, 1, data));
+    navigate('/');
   };
 
-  console.log(notes);
   return (
     <Grid>
       <Navigation />
