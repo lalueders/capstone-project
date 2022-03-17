@@ -7,7 +7,6 @@ export default function EditNote({ updateNote, noteToEdit }) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
