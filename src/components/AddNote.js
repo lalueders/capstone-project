@@ -1,9 +1,11 @@
 import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
-export default function Form({ notes, setNotes, showFormSubmitMessage }) {
+export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
   const [inputData, setInputData] = useState({
+    id: nanoid(),
     date: '',
     title: '',
     text: '',
@@ -14,6 +16,11 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
   const [location, setLocation] = useState();
   const [status, setStatus] = useState(null);
   const navigate = useNavigate();
+
+  const getDate = () => {
+    const [date] = new Date().toISOString().split('T');
+    return date;
+  };
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -31,7 +38,11 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
             );
             const data = await response.json();
             setLocation(data.address.city + ', ' + data.address.suburb);
-            setInputData({ ...inputData, date: getDate(), location: data.address.city + ', ' + data.address.suburb });
+            setInputData({
+              ...inputData,
+              date: getDate(),
+              location: data.address.city + ', ' + data.address.suburb,
+            });
           }
           try {
             fetchData();
@@ -46,14 +57,11 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
       );
       setInputData({ ...inputData, date: getDate() });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getDate = () => {
-    const [date] = new Date().toISOString().split('T');
-    return date;
-  };
-
+  console.log(inputData);
   const handleFormSubmit = e => {
     e.preventDefault();
     setNotes([inputData, ...notes]);
@@ -62,14 +70,26 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
     showFormSubmitMessage();
   };
 
-  const handleOnChangeCategories = e => {
-    if (e.target.checked) {
-      setInputData({ ...inputData, categories: [...inputData.categories, e.target.value] });
+  const handleOnChangeCategories = event => {
+    if (event.target.checked) {
+      setInputData({ ...inputData, categories: [...inputData.categories, event.target.value] });
     } else {
-      const index = inputData.categories.indexOf(e.target.value);
+      const index = inputData.categories.indexOf(event.target.value);
       inputData.categories.splice(index, 1);
       setInputData({ ...inputData, categories: [...inputData.categories] });
     }
+  };
+
+  const handleOnChangeDate = event => {
+    setInputData({ ...inputData, date: event.target.value });
+  };
+
+  const handleOnChangeTitle = event => {
+    setInputData({ ...inputData, title: event.target.value });
+  };
+
+  const handleOnChangeText = event => {
+    setInputData({ ...inputData, text: event.target.value });
   };
 
   return (
@@ -124,7 +144,11 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
           <label htmlFor="others">others</label>
         </div>
       </StyledCategories>
-      {status ? <StyledLocation>{status}</StyledLocation> : <StyledLocation>{location}</StyledLocation>}
+      {status ? (
+        <StyledLocation>{status}</StyledLocation>
+      ) : (
+        <StyledLocation>{location}</StyledLocation>
+      )}
       <StyledDate>
         <input
           type="date"
@@ -132,7 +156,7 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
           name="date"
           id="date"
           required
-          onChange={e => setInputData({ ...inputData, date: e.target.value })}
+          onChange={handleOnChangeDate}
           value={inputData.date}
         ></input>
         <label htmlFor="date">
@@ -142,7 +166,7 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
         </label>
       </StyledDate>
       <StyledTitle
-        onChange={e => setInputData({ ...inputData, title: e.target.value })}
+        onChange={handleOnChangeTitle}
         value={inputData.title}
         type="text"
         aria-label="title"
@@ -152,7 +176,7 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
         placeholder="What's it about?..."
       ></StyledTitle>
       <StyledTextarea
-        onChange={e => setInputData({ ...inputData, text: e.target.value })}
+        onChange={handleOnChangeText}
         value={inputData.text}
         aria-label="text"
         name="text"
@@ -166,13 +190,13 @@ export default function Form({ notes, setNotes, showFormSubmitMessage }) {
 }
 
 const StyledForm = styled.form`
-  height: calc(100vh - 64px);
-  padding: 0.5rem;
+  height: 100%;
   display: grid;
+  grid-template-rows: auto auto auto auto 1fr auto;
   gap: 0.5rem;
+  padding: 0.5rem;
   font-family: 'Open Sans', sans-serif;
   color: #394a59;
-  grid-template-rows: auto auto auto auto 1fr auto;
 `;
 
 const StyledCategories = styled.section`
@@ -180,8 +204,8 @@ const StyledCategories = styled.section`
   gap: 0.5rem;
 
   label {
-    display: block;
     user-select: none;
+    display: block;
     border-radius: 4px;
     border: 1px solid #394a59;
     padding: 0.5rem;

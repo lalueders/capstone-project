@@ -6,8 +6,8 @@ export default function AddButton() {
   const navigate = useNavigate();
 
   return (
-    <Button onClick={() => navigate('../form')}>
-      <img src={iconFeather} alt="create note" />
+    <Button onClick={() => navigate('../add')}>
+      <img src={iconFeather} alt="add note" />
     </Button>
   );
 }
