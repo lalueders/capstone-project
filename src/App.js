@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ShowNotePage from './pages/ShowNotePage.js';
 import AddNotePage from './pages/AddNotePage.js';
+import EditNotePage from './pages/EditNotePage.js';
 import Navigation from './components/Navigation.js';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
             />
           }
         />
+        <Route path="edit" element={<EditNotePage />} />
       </Routes>
     </Grid>
   );
