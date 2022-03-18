@@ -6,7 +6,7 @@ export default function EmptyListMessage() {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate('../form');
+    navigate('../add');
   }
 
   return (
