@@ -2,12 +2,21 @@ import styled from 'styled-components';
 import editIcon from '../assets/icon_edit.png';
 import trashIcon from '../assets/icon_trash.png';
 
-export default function Note({ deleteNote, date, title, text, location, categories }) {
+export default function Note({ editNote, deleteNote, date, title, text, location, categories }) {
+  const handleOnClickEdit = () => {
+    editNote();
+  };
+
   return (
     <Wrapper>
-      <EditButton>
-        <img src={editIcon} alt="edit note" />
-      </EditButton>
+      <Buttons>
+        <EditButton onClick={handleOnClickEdit}>
+          <img src={editIcon} alt="edit note" />
+        </EditButton>
+        <DeleteButton onClick={deleteNote}>
+          <img src={trashIcon} alt="delete note" />
+        </DeleteButton>
+      </Buttons>
       <time>{date}</time>
       {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
       <h2>{title}</h2>
@@ -17,9 +26,6 @@ export default function Note({ deleteNote, date, title, text, location, categori
           <li key={index}>{category}</li>
         ))}
       </StyledList>
-      <DeleteButton onClick={deleteNote}>
-        <img src={trashIcon} alt="delete note" />
-      </DeleteButton>
     </Wrapper>
   );
 }
@@ -49,13 +55,17 @@ const StyledList = styled.ul`
   }
 `;
 
+const Buttons = styled.div`
+  display: flex;
+  justify-self: end;
+  position: absolute;
+  height: 20px;
+`;
 const EditButton = styled.button`
   user-select: none;
   cursor: pointer;
-  position: absolute;
   border: none;
   background: none;
-  justify-self: end;
   img {
     height: 20px;
   }
@@ -64,11 +74,9 @@ const EditButton = styled.button`
 const DeleteButton = styled.button`
   user-select: none;
   cursor: pointer;
-  position: absolute;
-  right: 45px;
+  right: 25px;
   border: none;
   background: none;
-  justify-self: end;
   img {
     height: 20px;
   }

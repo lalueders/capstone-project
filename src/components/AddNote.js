@@ -61,7 +61,6 @@ export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(inputData);
   const handleFormSubmit = e => {
     e.preventDefault();
     setNotes([inputData, ...notes]);

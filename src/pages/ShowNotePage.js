@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import Note from '../components/Note';
 import EmptyListMessage from '../components/EmptyListMessage.js';
 import AddButton from '../components/AddButton';
-export default function ShowNotePage({ deleteNote, notes, isFormSubmitted }) {
+
+export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmitted }) {
   return (
     <StyledPage>
       {notes.length === 0 ? <EmptyListMessage /> : ''}
@@ -23,6 +24,7 @@ export default function ShowNotePage({ deleteNote, notes, isFormSubmitted }) {
           location={note.location}
           categories={note.categories}
           deleteNote={() => deleteNote(note.id)}
+          editNote={() => editNote(note.id)}
         />
       ))}
 
