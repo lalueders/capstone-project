@@ -31,7 +31,7 @@ export default function EditNote({ updateNote, noteToEdit }) {
         })}
       >
         <StyledList role="list">
-          {noteToEdit.categories.map(category => (
+          {noteToEdit.categories?.map(category => (
             <li key={category}>{category}</li>
           ))}
         </StyledList>
