@@ -8,7 +8,6 @@ export default function Note({ editNote, deleteNote, date, title, text, location
 
   const handleOnClickNote = () => {
     setIsSelected(!isSelected);
-    console.log('Click on Card');
   };
 
   const handleOnClickEdit = () => {
