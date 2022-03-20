@@ -17,12 +17,12 @@ export default function Note({ editNote, deleteNote, date, title, text, location
   return (
     <Wrapper active={isSelected} onClick={handleOnClickNote}>
       <Buttons hidden={isSelected}>
-        <EditButton hidden={!isSelected} onClick={handleOnClickEdit}>
+        <button hidden={!isSelected} onClick={handleOnClickEdit}>
           <img src={editIcon} alt="edit note" />
-        </EditButton>
-        <DeleteButton hidden={!isSelected} onClick={deleteNote}>
+        </button>
+        <button hidden={!isSelected} onClick={deleteNote}>
           <img src={trashIcon} alt="delete note" />
-        </DeleteButton>
+        </button>
       </Buttons>
       <time>{date}</time>
       {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
@@ -65,28 +65,18 @@ const StyledList = styled.ul`
 `;
 
 const Buttons = styled.div`
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
   display: flex;
   justify-self: end;
   position: absolute;
-`;
-const EditButton = styled.button`
-  user-select: none;
-  cursor: pointer;
-  border: none;
-  background: none;
-  img {
-    height: 20px;
-  }
-`;
 
-const DeleteButton = styled.button`
-  user-select: none;
-  cursor: pointer;
-  right: 25px;
-  border: none;
-  background: none;
-  img {
-    height: 20px;
+  button {
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    img {
+      height: 20px;
+    }
   }
 `;
