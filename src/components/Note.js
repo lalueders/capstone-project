@@ -1,21 +1,28 @@
 import styled from 'styled-components';
-import editIcon from '../assets/icon_edit.png';
-import trashIcon from '../assets/icon_trash.png';
+import { useState } from 'react';
+import editIcon from '../assets/edit_icon--light.svg';
+import trashIcon from '../assets/trash_icon--light.svg';
 
 export default function Note({ editNote, deleteNote, date, title, text, location, categories }) {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleOnClickNote = () => {
+    setIsSelected(!isSelected);
+  };
+
   const handleOnClickEdit = () => {
     editNote();
   };
 
   return (
-    <Wrapper>
-      <Buttons>
-        <EditButton onClick={handleOnClickEdit}>
+    <Wrapper active={isSelected} onClick={handleOnClickNote}>
+      <Buttons hidden={isSelected}>
+        <button hidden={!isSelected} onClick={handleOnClickEdit}>
           <img src={editIcon} alt="edit note" />
-        </EditButton>
-        <DeleteButton onClick={deleteNote}>
+        </button>
+        <button hidden={!isSelected} onClick={deleteNote}>
           <img src={trashIcon} alt="delete note" />
-        </DeleteButton>
+        </button>
       </Buttons>
       <time>{date}</time>
       {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
@@ -31,13 +38,15 @@ export default function Note({ editNote, deleteNote, date, title, text, location
 }
 
 const Wrapper = styled.section`
+  cursor: pointer;
+  background: ${props => (props.active ? '#394a59' : '')};
+  padding: ${props => (props.active ? '1.5rem' : '0.5rem')};
+  color: ${props => (props.active ? '#DCE6F2' : '#394a59')};
   margin: 0.5rem;
   border: 1px solid;
   border-radius: 4px;
   display: grid;
   gap: 0.75rem;
-  padding: 0.5rem;
-  color: #394a59;
   word-break: break-word;
 `;
 
@@ -56,28 +65,18 @@ const StyledList = styled.ul`
 `;
 
 const Buttons = styled.div`
+  /* gap: 0.5rem; */
   display: flex;
   justify-self: end;
   position: absolute;
-  height: 20px;
-`;
-const EditButton = styled.button`
-  user-select: none;
-  cursor: pointer;
-  border: none;
-  background: none;
-  img {
-    height: 20px;
-  }
-`;
 
-const DeleteButton = styled.button`
-  user-select: none;
-  cursor: pointer;
-  right: 25px;
-  border: none;
-  background: none;
-  img {
-    height: 20px;
+  button {
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    img {
+      height: 20px;
+    }
   }
 `;

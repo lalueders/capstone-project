@@ -8,7 +8,33 @@ import EditNotePage from './pages/EditNotePage.js';
 import Navigation from './components/Navigation.js';
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState([
+    {
+      id: '3',
+      date: '2022-03-18',
+      location: 'Hamburg, Rotherbaum',
+      title: '2. Sprint Woche geschafft!',
+      text: 'Hoch die Hände, Wochenende! Aaaaaber nach dem Sprint ist vor dem Sprint! USer Stories müssen her...',
+      categories: ['job', 'bootcamp'],
+    },
+    {
+      id: '2',
+      date: '2022-03-11',
+      location: 'Hamburg, Rotherbaum',
+      title: '1. Sprint Woche geschafft!',
+      text: 'MVP steht, auch wenn es noch hakt und klemmt!',
+      categories: ['job', 'bootcamp'],
+    },
+    {
+      id: '1',
+      date: '2022-01-10',
+      location: 'Hamburg, Rotherbaum',
+      title: 'Bootcamp geht los!',
+      text: 'Man sagt, da kommt viel Arbeit auf mich zu...',
+      categories: ['job', 'bootcamp'],
+    },
+  ]);
+
   const [noteToEdit, setNoteToEdit] = useState();
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const navigate = useNavigate();
