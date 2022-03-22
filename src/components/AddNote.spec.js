@@ -10,13 +10,15 @@ describe('Form', () => {
         <AddNote />
       </MemoryRouter>
     );
+    const fileInput = screen.getByTestId('file-upload');
     const dateInput = screen.getByLabelText('date');
-    expect(dateInput).toBeInTheDocument();
     const titleInput = screen.getByLabelText('title');
-    expect(titleInput).toBeInTheDocument();
     const textInput = screen.getByLabelText('text');
-    expect(textInput).toBeInTheDocument();
     const submitButton = screen.getByRole('button', { name: /save/i });
+    expect(fileInput).toBeInTheDocument();
+    expect(dateInput).toBeInTheDocument();
+    expect(titleInput).toBeInTheDocument();
+    expect(textInput).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();
   });
 

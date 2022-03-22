@@ -23,6 +23,7 @@ export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmit
           text={note.text}
           location={note.location}
           categories={note.categories}
+          img={note.img}
           deleteNote={() => deleteNote(note.id)}
           editNote={() => editNote(note.id)}
         />
