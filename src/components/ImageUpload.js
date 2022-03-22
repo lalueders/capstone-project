@@ -54,14 +54,14 @@ export default function ImageUpload({ inputData }) {
           <CancelButton onClick={handleRemoveImage}>
             <img src={cancel} width="35" alt="Thumb" />
           </CancelButton>
-          <img src={image} alt="" style={{ width: '100%' }} />
+          <img src={image} alt="Delete" style={{ width: '100%', cursor: 'pointer' }} />
         </Preview>
       ) : (
         <div>
           <label htmlFor="file-upload">
-            <UploadIcon src={select} alt="upload" width="35" />
+            <img src={select} alt="upload" style={{ width: '35px', cursor: 'pointer' }} />
           </label>
-          <input id="file-upload" type="file" onChange={upload} hidden />
+          <input data-testid="file-upload" id="file-upload" type="file" onChange={upload} hidden />
         </div>
       )}
     </>
@@ -73,10 +73,6 @@ const Preview = styled.div`
   img {
     border-radius: 4px;
   }
-`;
-
-const UploadIcon = styled.img`
-  cursor: pointer;
 `;
 
 const CancelButton = styled.button`
