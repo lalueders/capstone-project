@@ -7,3 +7,5 @@
 - React Hook Form
 - Storybook
 - Styled Components
+- Cloudinary
+- Axios

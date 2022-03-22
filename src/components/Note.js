@@ -3,7 +3,16 @@ import { useState } from 'react';
 import editIcon from '../assets/edit_icon--light.svg';
 import trashIcon from '../assets/trash_icon--light.svg';
 
-export default function Note({ editNote, deleteNote, date, title, text, location, categories }) {
+export default function Note({
+  editNote,
+  deleteNote,
+  date,
+  title,
+  text,
+  location,
+  categories,
+  img,
+}) {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleOnClickNote = () => {
@@ -28,6 +37,7 @@ export default function Note({ editNote, deleteNote, date, title, text, location
       {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
       <h2>{title}</h2>
       <p>{text}</p>
+      <StyledImage src={img} alt="" width="100%" />
       <StyledList role="list">
         {categories.map((category, index) => (
           <li key={index}>{category}</li>
@@ -79,4 +89,8 @@ const Buttons = styled.div`
       height: 20px;
     }
   }
+`;
+
+const StyledImage = styled.img`
+  border-radius: 4px;
 `;

@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
+import ImageUpload from './ImageUpload';
 
 export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
   const [inputData, setInputData] = useState({
@@ -13,6 +14,7 @@ export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
     categories: [],
   });
 
+  const [imageURL, setImageURL] = useState('');
   const [location, setLocation] = useState();
   const [status, setStatus] = useState(null);
   const navigate = useNavigate();
@@ -61,8 +63,9 @@ export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleFormSubmit = e => {
-    e.preventDefault();
+  const handleFormSubmit = event => {
+    console.log(inputData);
+    event.preventDefault();
     setNotes([inputData, ...notes]);
     setInputData({ ...inputData, date: getDate(), title: '', text: '', categories: [] });
     navigate('../');
@@ -183,6 +186,12 @@ export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
         required
         placeholder="Write it down here..."
       ></StyledTextarea>
+      <ImageUpload
+        setImageURL={setImageURL}
+        imageURL={imageURL}
+        inputData={inputData}
+        setInputData={setInputData}
+      />
       <StyledButton type="submit">SAVE</StyledButton>
     </StyledForm>
   );
@@ -191,7 +200,7 @@ export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
 const StyledForm = styled.form`
   height: 100%;
   display: grid;
-  grid-template-rows: auto auto auto auto 1fr auto;
+  grid-template-rows: auto auto auto auto 1fr auto auto;
   gap: 0.5rem;
   padding: 0.5rem;
   font-family: 'Open Sans', sans-serif;
