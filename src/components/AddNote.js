@@ -64,7 +64,6 @@ export default function AddNote({ notes, setNotes, showFormSubmitMessage }) {
   }, []);
 
   const handleFormSubmit = event => {
-    console.log(inputData);
     event.preventDefault();
     setNotes([inputData, ...notes]);
     setInputData({ ...inputData, date: getDate(), title: '', text: '', categories: [] });
