@@ -10,6 +10,15 @@ import Navigation from './components/Navigation.js';
 function App() {
   const [notes, setNotes] = useState([
     {
+      id: '4',
+      date: '2022-03-22',
+      location: 'Hamburg, Rotherbaum',
+      title: 'Pausen sind auch wichtig!',
+      text: 'Bald ist es geschafft..',
+      categories: ['job', 'bootcamp'],
+      img: 'https://res.cloudinary.com/dq7bhlygi/image/upload/v1647948992/gbla2npjsth195dhvzv3.jpg',
+    },
+    {
       id: '3',
       date: '2022-03-18',
       location: 'Hamburg, Rotherbaum',
