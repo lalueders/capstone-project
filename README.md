@@ -9,3 +9,4 @@
 - Styled Components
 - Cloudinary
 - Axios
+- Vercel
