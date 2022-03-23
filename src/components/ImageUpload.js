@@ -54,7 +54,7 @@ export default function ImageUpload({ inputData }) {
           <CancelButton onClick={handleRemoveImage}>
             <img src={cancel} width="35" alt="Thumb" />
           </CancelButton>
-          <img src={image} alt="Delete" style={{ width: '100%', cursor: 'pointer' }} />
+          <img src={inputData.img} alt="Delete" style={{ width: '100%', cursor: 'pointer' }} />
         </Preview>
       ) : (
         <div>
