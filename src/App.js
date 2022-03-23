@@ -10,37 +10,86 @@ import Navigation from './components/Navigation.js';
 function App() {
   const [notes, setNotes] = useState([
     {
-      id: '4',
-      date: '2022-03-22',
-      location: 'Hamburg, Rotherbaum',
-      title: 'Pausen sind auch wichtig!',
-      text: 'Bald ist es geschafft..',
-      categories: ['job', 'bootcamp'],
+      id: 'XQW93DSF0OV',
+      date: '2010-03-04',
+      location: 'Bad Homburg v. d. Höhe',
+      title: 'massa. Quisque porttitor',
+      text: 'sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit,',
+      categories: ['vacation'],
       img: 'https://res.cloudinary.com/dq7bhlygi/image/upload/v1647948992/gbla2npjsth195dhvzv3.jpg',
     },
     {
-      id: '3',
-      date: '2022-03-18',
-      location: 'Hamburg, Rotherbaum',
-      title: '2. Sprint Woche geschafft!',
-      text: 'Hoch die Hände, Wochenende! Aaaaaber nach dem Sprint ist vor dem Sprint! USer Stories müssen her...',
-      categories: ['job', 'bootcamp'],
+      id: 'BHI90RBJ7WX',
+      date: '2018-10-23',
+      location: 'Merseburg',
+      title: 'egestas a, scelerisque',
+      text: 'lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis arcu vel',
+      categories: ['family', 'vacation', 'others'],
     },
     {
-      id: '2',
-      date: '2022-03-11',
-      location: 'Hamburg, Rotherbaum',
-      title: '1. Sprint Woche geschafft!',
-      text: 'MVP steht, auch wenn es noch hakt und klemmt!',
-      categories: ['job', 'bootcamp'],
+      id: 'WBQ68WXK4NQ',
+      date: '2019-04-17',
+      location: 'Bremen',
+      title: 'facilisis facilisis, magna tellus faucibus',
+      text: 'sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus.',
+      categories: ['friends', 'others'],
     },
     {
-      id: '1',
-      date: '2022-01-10',
-      location: 'Hamburg, Rotherbaum',
-      title: 'Bootcamp geht los!',
-      text: 'Man sagt, da kommt viel Arbeit auf mich zu...',
-      categories: ['job', 'bootcamp'],
+      id: 'ZNF75NEY4EC',
+      date: '2014-04-24',
+      location: 'Hameln',
+      title: 'sed sem egestas',
+      text: 'et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi',
+      categories: ['friends'],
+      img: 'https://res.cloudinary.com/dq7bhlygi/image/upload/v1648034897/xcadqnu8b8kikyqlwsdj.jpg',
+    },
+    {
+      id: 'DWI82CKY7PO',
+      date: '2011-11-07',
+      location: 'Stralsund',
+      title: 'posuere cubilia Curae Donec',
+      text: 'at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa',
+      categories: ['friends', 'vacation'],
+    },
+    {
+      id: 'HCE47INF9QI',
+      date: '2022-10-29',
+      location: 'Hof',
+      title: 'velit. Aliquam nisl. Nulla eu neque pellentesque',
+      text: 'aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis',
+      categories: ['family'],
+    },
+    {
+      id: 'RRI71JXG0ZR',
+      date: '2019-02-24',
+      location: 'Bremen',
+      title: 'fermentum arcu. Vestibulum ante ipsum primis',
+      text: 'dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu',
+      categories: ['friends'],
+    },
+    {
+      id: 'PYL84MZR5OF',
+      date: '2017-10-04',
+      location: 'Bremerhaven',
+      title: 'vel lectus. Cum sociis',
+      text: 'Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna',
+      categories: ['others', 'vacation'],
+    },
+    {
+      id: 'KQF22CAV3PE',
+      date: '2022-10-27',
+      location: 'Mörfelden-Walldorf',
+      title: 'pharetra sed, hendrerit a, arcu.',
+      text: 'metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat,',
+      categories: ['vacation'],
+    },
+    {
+      id: 'GDC62YGE1II',
+      date: '2021-04-09',
+      location: 'Hamburg',
+      title: 'natoque penatibus et',
+      text: 'lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam',
+      categories: ['others'],
     },
   ]);
 
@@ -71,6 +120,7 @@ function App() {
   return (
     <Grid>
       <Navigation />
+
       <Routes>
         <Route
           path="/"

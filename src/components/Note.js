@@ -52,7 +52,7 @@ const Wrapper = styled.section`
   background: ${props => (props.active ? '#394a59' : '')};
   padding: ${props => (props.active ? '1.5rem' : '0.5rem')};
   color: ${props => (props.active ? '#DCE6F2' : '#394a59')};
-  margin: 0.5rem;
+  margin: 1rem 0.5rem;
   border: 1px solid;
   border-radius: 4px;
   display: grid;
@@ -75,7 +75,6 @@ const StyledList = styled.ul`
 `;
 
 const Buttons = styled.div`
-  /* gap: 0.5rem; */
   display: flex;
   justify-self: end;
   position: absolute;
