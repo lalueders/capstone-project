@@ -16,7 +16,7 @@ function App() {
       title: 'massa. Quisque porttitor',
       text: 'sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit,',
       categories: ['vacation'],
-      img: 'https://res.cloudinary.com/dq7bhlygi/image/upload/v1647948992/gbla2npjsth195dhvzv3.jpg',
+      img: 'https://res.cloudinary.com/dq7bhlygi/image/upload/v1647956325/l8osfoevkdxcrpm8dvho.jpg',
     },
     {
       id: 'BHI90RBJ7WX',
