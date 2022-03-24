@@ -31,6 +31,7 @@ const Wrapper = styled.div`
   z-index: 2;
   top: 4rem;
   width: 100%;
+  max-width: 600px;
   padding: 0.5rem;
 `;
 
