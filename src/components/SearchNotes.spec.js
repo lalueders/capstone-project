@@ -15,6 +15,7 @@ describe('Searchbar', () => {
 
     const searchInput = screen.getByRole('searchbox');
     userEvent.click(searchInput);
+    expect(mockSetActive).toHaveBeenCalled();
   });
   it('type in search input change state of searchInput', () => {
     const mockSetActive = jest.fn();
@@ -23,5 +24,6 @@ describe('Searchbar', () => {
 
     const searchInput = screen.getByRole('searchbox');
     userEvent.type(searchInput, 'search');
+    expect(mockSetSearchInput).toHaveBeenCalled();
   });
 });
