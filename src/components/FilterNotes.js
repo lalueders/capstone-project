@@ -30,6 +30,7 @@ export default function FilterNotes({ active, setActive, setFilter, setSearchInp
 
 const Wrapper = styled.div`
   background: #f2f0f0;
+  z-index: 1;
   border-radius: 4px;
   display: flex;
   gap: 0.5rem;
