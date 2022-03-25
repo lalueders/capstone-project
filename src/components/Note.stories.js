@@ -14,4 +14,5 @@ Default.args = {
   text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab... ',
   location: 'Hamburg, Rotherbaum',
   categories: ['family', 'friends'],
+  img: 'https://res.cloudinary.com/dq7bhlygi/image/upload/v1647956325/l8osfoevkdxcrpm8dvho.jpg',
 };

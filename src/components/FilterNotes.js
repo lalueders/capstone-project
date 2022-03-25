@@ -1,12 +1,10 @@
 import styled from 'styled-components/macro';
-import { useState } from 'react';
 
-export default function FilterNotes({ filterNotes, notes }) {
-  const [active, setActive] = useState('all');
-
+export default function FilterNotes({ active, setActive, setFilter, setSearchInput }) {
   function handleOnClick(event) {
-    filterNotes(event.target.name);
+    setFilter(event.target.name);
     setActive(event.target.name);
+    setSearchInput('');
   }
 
   return (
@@ -32,11 +30,12 @@ export default function FilterNotes({ filterNotes, notes }) {
 
 const Wrapper = styled.div`
   background: #f2f0f0;
+  z-index: 1;
   border-radius: 4px;
   display: flex;
   gap: 0.5rem;
   position: fixed;
-  padding: 0 0.5rem 0.5rem 0.5rem;
+  padding: 3.5rem 0.5rem 0.5rem 0.5rem;
   width: 100%;
   overflow: auto;
 `;
@@ -48,6 +47,7 @@ const Button = styled.button`
   user-select: none;
   border-radius: 4px;
   padding: 0.5rem;
+  font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
 `;

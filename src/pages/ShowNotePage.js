@@ -3,33 +3,55 @@ import Note from '../components/Note';
 import EmptyListMessage from '../components/EmptyListMessage.js';
 import AddButton from '../components/AddButton';
 import FilterNotes from '../components/FilterNotes';
+import SearchNotes from '../components/SearchNotes';
 import { useState } from 'react';
 
 export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmitted }) {
-  const [filteredNotes, setFilteredNotes] = useState('');
+  const [filterResult, setFilterResult] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+  const [active, setActive] = useState('all');
 
-  const filterNotes = filter => {
+  const setFilter = filter => {
     switch (filter) {
       case 'family':
-        setFilteredNotes(notes.filter(note => note.categories.includes(filter)));
+        setFilterResult(notes.filter(note => note.categories.includes(filter)));
         break;
       case 'friends':
-        setFilteredNotes(notes.filter(note => note.categories.includes(filter)));
+        setFilterResult(notes.filter(note => note.categories.includes(filter)));
         break;
       case 'vacation':
-        setFilteredNotes(notes.filter(note => note.categories.includes(filter)));
+        setFilterResult(notes.filter(note => note.categories.includes(filter)));
         break;
       case 'others':
-        setFilteredNotes(notes.filter(note => note.categories.includes(filter)));
+        setFilterResult(notes.filter(note => note.categories.includes(filter)));
         break;
       default:
-        setFilteredNotes(notes);
+        setFilterResult(notes);
     }
   };
 
+  const searchNotes = notes.filter(note => {
+    if (searchInput.toLowerCase() === '') {
+      return note;
+    } else {
+      return note.title.toLowerCase().includes(searchInput.toLowerCase().trim());
+    }
+  });
+
   return (
     <StyledPage>
-      <FilterNotes filterNotes={filterNotes} notes={notes} />
+      <SearchNotes
+        setSearchInput={setSearchInput}
+        searchInput={searchInput}
+        setActive={setActive}
+      />
+      <FilterNotes
+        setFilter={setFilter}
+        setSearchInput={setSearchInput}
+        notes={notes}
+        setActive={setActive}
+        active={active}
+      />
       {notes.length === 0 ? <EmptyListMessage /> : ''}
       {isFormSubmitted ? (
         <StyledMessage>
@@ -39,8 +61,23 @@ export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmit
         ''
       )}
       <NoteList>
-        {filteredNotes.length > 0
-          ? filteredNotes.map(note => (
+        {searchInput.length > 0
+          ? searchNotes.map(note => (
+              <Note
+                key={note.id}
+                id={note.id}
+                date={note.date}
+                title={note.title}
+                text={note.text}
+                location={note.location}
+                categories={note.categories}
+                img={note.img}
+                deleteNote={() => deleteNote(note.id)}
+                editNote={() => editNote(note.id)}
+              />
+            ))
+          : filterResult.length > 0
+          ? filterResult.map(note => (
               <Note
                 key={note.id}
                 id={note.id}
@@ -84,7 +121,7 @@ const StyledPage = styled.main`
 `;
 
 const NoteList = styled.div`
-  margin-top: 2.75rem;
+  margin-top: 7rem;
 `;
 const StyledMessage = styled.p`
   font-size: 1rem;
