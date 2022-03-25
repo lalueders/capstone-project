@@ -11,7 +11,7 @@ export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmit
   const [searchInput, setSearchInput] = useState('');
   const [active, setActive] = useState('all');
 
-  const filterNotes = filter => {
+  const setFilter = filter => {
     switch (filter) {
       case 'family':
         setFilterResult(notes.filter(note => note.categories.includes(filter)));
@@ -34,7 +34,7 @@ export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmit
     if (searchInput.toLowerCase() === '') {
       return note;
     } else {
-      return note.title.toLowerCase().includes(searchInput.toLowerCase());
+      return note.title.toLowerCase().includes(searchInput.toLowerCase().trim());
     }
   });
 
@@ -46,7 +46,7 @@ export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmit
         setActive={setActive}
       />
       <FilterNotes
-        filterNotes={filterNotes}
+        setFilter={setFilter}
         setSearchInput={setSearchInput}
         notes={notes}
         setActive={setActive}

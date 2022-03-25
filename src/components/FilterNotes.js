@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro';
 
-export default function FilterNotes({ active, setActive, filterNotes, setSearchInput }) {
+export default function FilterNotes({ active, setActive, setFilter, setSearchInput }) {
   function handleOnClick(event) {
-    filterNotes(event.target.name);
+    setFilter(event.target.name);
     setActive(event.target.name);
     setSearchInput('');
   }
