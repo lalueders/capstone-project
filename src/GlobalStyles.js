@@ -5,13 +5,33 @@ export default createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
   }
+
   body {
-    margin: 0 auto;
     max-width: 600px;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.2;
     background: #F2F0F0;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.2;
   }
+
+  input[type="text"],
+  input[type="date"],
+  textarea
+ {
+    resize: none;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    color: #394a59;
+    background: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #394a59;
+    padding: 0.5rem;
+  }
+  input:focus {
+    color: #394a59;
+  }
+
 
   .sr-only{
     position: absolute;

@@ -93,6 +93,7 @@ function App() {
     },
   ]);
 
+  const [categories, setCategories] = useState(['family', 'friends', 'vacation', 'others']);
   const [noteToEdit, setNoteToEdit] = useState();
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const navigate = useNavigate();
@@ -115,6 +116,10 @@ function App() {
     const noteToUpdate = notes.findIndex(note => note.id === data.id);
     setNotes(notes, notes.splice(noteToUpdate, 1, data));
     navigate('/');
+  };
+
+  const addCategory = input => {
+    setCategories([input, ...categories]);
   };
 
   return (
@@ -141,6 +146,8 @@ function App() {
               setNotes={setNotes}
               notes={notes}
               showFormSubmitMessage={showFormSubmitMessage}
+              addCategory={addCategory}
+              categories={categories}
             />
           }
         />
