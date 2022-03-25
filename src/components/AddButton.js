@@ -13,6 +13,7 @@ export default function AddButton() {
 }
 
 const Button = styled.button`
+  z-index: 2;
   position: fixed;
   left: 50%;
   transform: translate(-50%);
