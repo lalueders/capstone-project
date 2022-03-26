@@ -1,53 +1,67 @@
 import styled from 'styled-components/macro';
 import { useState } from 'react';
+import cancel from '../assets/iconCancel--light.svg';
+import add from '../assets/iconAdd.svg';
 
-export default function AddCategories({ addCategory }) {
-  const [edit, setEdit] = useState(false);
+export default function AddCategories({ addCategory, toggleAddCategories }) {
   const [input, setInput] = useState('');
 
-  const handleOnClick = () => {
-    setEdit(!edit);
-  };
+  function handleClickToCancel() {
+    setInput('');
+    toggleAddCategories();
+  }
 
-  const handleSubmit = () => {
+  function handleClickToAddCategory() {
     addCategory(input);
     setInput('');
-    setEdit(!edit);
-  };
+    toggleAddCategories();
+  }
 
   return (
-    <Wrapper>
-      {edit ? (
-        <button onClick={handleOnClick}>Close</button>
-      ) : (
-        <button onClick={handleOnClick}>Add</button>
-      )}
-      {edit ? (
-        <StyledForm onSubmit={handleSubmit}>
-          <input
-            type="text"
-            onChange={event => setInput(event.target.value)}
-            value={input}
-            aria-label="Add category"
-            name="Add category"
-            maxLength="60"
-            minLength="4"
-            required
-            placeholder="Add a new category"
-          ></input>
-          <button type="submit">Add</button>
-        </StyledForm>
-      ) : (
-        ''
-      )}
-    </Wrapper>
+    <StyledForm onSubmit={handleClickToAddCategory}>
+      <input
+        type="text"
+        onChange={event => setInput(event.target.value)}
+        value={input}
+        aria-label="Add category"
+        name="Add category"
+        maxLength="20"
+        minLength="3"
+        required
+        placeholder="Add new category..."
+      ></input>
+      <StyledButton type="submit">
+        <img src={add} alt="Add more categories here" />
+      </StyledButton>
+      <StyledButton onClick={handleClickToCancel}>
+        <img src={cancel} alt="Don't add category and cancel" />
+      </StyledButton>
+    </StyledForm>
   );
 }
 
-const Wrapper = styled.section``;
-
 const StyledForm = styled.form`
-  padding: 1rem;
+  padding: 0.5rem 0;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+
+  input[type='text'] {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 0;
+    background: inherit;
+    border-bottom: 1px solid #a3afbf;
+    outline: none;
+  }
+`;
+
+const StyledButton = styled.button`
+  padding: 0;
+  background: inherit;
+  border: none;
+  img {
+    height: 20px;
+  }
 `;

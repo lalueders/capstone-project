@@ -1,11 +1,19 @@
 import styled from 'styled-components/macro';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import AddCategories from './AddCategories';
+import ImageUpload from './ImageUpload';
+import addIcon from '../assets/iconAdd.svg';
 
-export default function AddNote({ addCategory, categories }) {
-  const [active, setActive] = useState(false);
+export default function AddNote({ addCategory, categories, setNotes, notes }) {
+  const navigate = useNavigate();
+  const [image, setImage] = useState('');
+  const [isToEdit, setIsToEdit] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [location, setLocation] = useState();
+  const [status, setStatus] = useState('');
   const [categoriesSelected, setCategoriesSelected] = useState([]);
   const getDate = () => {
     const [date] = new Date().toISOString().split('T');
@@ -14,7 +22,6 @@ export default function AddNote({ addCategory, categories }) {
   const {
     register,
     handleSubmit,
-    // watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -22,38 +29,85 @@ export default function AddNote({ addCategory, categories }) {
     },
   });
 
-  const onSubmit = data => {
-    data.id = nanoid();
-    data.categories = [categoriesSelected];
-    console.log(data);
-  };
-  // console.log(watch());
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      setStatus('Geolocation not supported!');
+    } else {
+      setStatus('Locating...');
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          setTimeout(() => setStatus(null), 1000);
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          async function fetchData() {
+            const response = await fetch(
+              'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat + '&lon=' + lng
+            );
+            const data = await response.json();
+            setLocation(data.address.city + ', ' + data.address.suburb);
+          }
+          try {
+            fetchData();
+          } catch (error) {
+            console.error(error);
+            setStatus('Location not available!');
+          }
+        },
+        () => {
+          setStatus('Location services are disabled!');
+        }
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handleCategorySelect = event => {
-    setActive(!active);
+  function toggleAddCategories() {
+    setIsToEdit(!isToEdit);
+  }
+
+  function onSubmit(data) {
+    data.id = nanoid();
+    data.location = location;
+    data.categories = categoriesSelected;
+    data.img = image;
+    console.log(data);
+    setNotes([data, ...notes]);
+    navigate('../');
+  }
+  console.log(notes);
+
+  function handleCategorySelect(event) {
+    setIsActive(!isActive);
     if (categoriesSelected.includes(event.target.value)) {
       const index = categoriesSelected.indexOf(event.target.value);
       categoriesSelected.splice(index, 1);
     } else {
       setCategoriesSelected([...categoriesSelected, event.target.value]);
     }
-  };
+  }
 
   return (
     <Wrapper>
       <StyledCategories>
+        {!isToEdit && (
+          <Button onClick={toggleAddCategories}>
+            <img src={addIcon} alt="Add more categories" />
+          </Button>
+        )}
         {categories.map(category => (
-          <Button
+          <CategoryTags
             key={nanoid()}
             value={category}
-            onClick={handleCategorySelect}
             active={categoriesSelected.includes(category)}
+            onClick={handleCategorySelect}
           >
             {category}
-          </Button>
+          </CategoryTags>
         ))}
       </StyledCategories>
-      <AddCategories addCategory={addCategory} />
+      {isToEdit && (
+        <AddCategories addCategory={addCategory} toggleAddCategories={toggleAddCategories} />
+      )}
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <DateInput>
           <input
@@ -71,6 +125,12 @@ export default function AddNote({ addCategory, categories }) {
             </svg>
           </label>
         </DateInput>
+        {errors.title?.message && <p>{errors.title?.message}</p>}
+        {status ? (
+          <StyledLocation>{status}</StyledLocation>
+        ) : (
+          <StyledLocation>{location}</StyledLocation>
+        )}
         <input
           {...register('title', {
             required: 'This is required.',
@@ -80,7 +140,7 @@ export default function AddNote({ addCategory, categories }) {
           aria-label="title"
           placeholder="Give your note a headline"
         />
-        <p>{errors.title?.message}</p>
+        {errors.title?.message && <p>{errors.title?.message}</p>}
         <textarea
           {...register('text', {
             required: 'This is required.',
@@ -90,12 +150,18 @@ export default function AddNote({ addCategory, categories }) {
           aria-label="text"
           placeholder="Write your note here..."
         />
-        <p>{errors.text?.message}</p>
-        <button type="submit">SAVE</button>
+        {errors.title?.message && <p>{errors.title?.message}</p>}
+        <StyledButton type="submit">SAVE</StyledButton>
       </StyledForm>
+      <ImageUpload setImage={setImage} image={image} />
     </Wrapper>
   );
 }
+
+const StyledLocation = styled.p`
+  color: #394a59;
+  font-size: 1rem;
+`;
 
 const Wrapper = styled.section`
   display: grid;
@@ -112,6 +178,15 @@ const DateInput = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  /* input[type='date'] {
+    padding: 1rem 0;
+    border: none;
+    border-radius: 0;
+    background: inherit;
+
+    outline: none;
+  } */
   svg {
     fill: #394a59;
     width: 20px;
@@ -120,13 +195,12 @@ const DateInput = styled.div`
 `;
 
 const StyledCategories = styled.section`
-  padding-bottom: 1rem;
   overflow: scroll;
   display: flex;
   gap: 0.5rem;
 `;
 
-const Button = styled.button`
+const CategoryTags = styled.button`
   background: ${props => (props.active ? '#394a59' : '#ffffff')};
   border: 1px solid ${props => (props.active ? '#ffffff' : '#394a59')};
   color: ${props => (props.active ? '#ffffff' : '#394a59')};
@@ -135,4 +209,30 @@ const Button = styled.button`
   padding: 0.5rem;
   font-size: 1rem;
   text-decoration: none;
+
+  white-space: nowrap;
+`;
+
+const StyledButton = styled.button`
+  background: #394a59;
+  color: #dce6f2;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem;
+  cursor: pointer;
+`;
+
+const Button = styled.button`
+  position: sticky;
+  left: 0;
+  background: #f2f0f0;
+  display: flex;
+  align-items: center;
+  border: none;
+  height: 100%;
+
+  img {
+    height: 20px;
+  }
 `;
