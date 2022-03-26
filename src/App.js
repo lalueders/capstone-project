@@ -136,6 +136,7 @@ function App() {
               isFormSubmitted={isFormSubmitted}
               deleteNote={deleteNote}
               editNote={editNote}
+              categories={categories}
             />
           }
         />

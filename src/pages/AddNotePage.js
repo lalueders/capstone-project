@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-// import AddNote from '../components/AddNote';
-import AddNoteRefact from '../components/AddNoteRefact';
+import AddNote from '../components/AddNote';
 
 export default function AddNotePage({
   notes,
@@ -11,7 +10,7 @@ export default function AddNotePage({
 }) {
   return (
     <StyledPage>
-      <AddNoteRefact
+      <AddNote
         setNotes={setNotes}
         notes={notes}
         showFormSubmitMessage={showFormSubmitMessage}

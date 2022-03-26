@@ -3,40 +3,52 @@ import { useState } from 'react';
 import cancel from '../assets/iconCancel--light.svg';
 import add from '../assets/iconAdd.svg';
 
-export default function AddCategories({ addCategory, toggleAddCategories }) {
+export default function AddCategories({ categories, addCategory, toggleAddCategories }) {
   const [input, setInput] = useState('');
+  const [error, setError] = useState('');
 
   function handleClickToCancel() {
     setInput('');
     toggleAddCategories();
   }
 
-  function handleClickToAddCategory() {
-    addCategory(input);
-    setInput('');
-    toggleAddCategories();
+  function handleClickToAddCategory(event) {
+    const categoriesToLowerCase = categories.map(category => category.toLowerCase());
+    if (categoriesToLowerCase.includes(input.toLocaleLowerCase())) {
+      event.preventDefault();
+      setError('This category already exists!');
+    } else {
+      addCategory(input);
+      setInput('');
+      toggleAddCategories();
+    }
   }
 
+  console.log(input.toLowerCase());
+
   return (
-    <StyledForm onSubmit={handleClickToAddCategory}>
-      <input
-        type="text"
-        onChange={event => setInput(event.target.value)}
-        value={input}
-        aria-label="Add category"
-        name="Add category"
-        maxLength="20"
-        minLength="3"
-        required
-        placeholder="Add new category..."
-      ></input>
-      <StyledButton type="submit">
-        <img src={add} alt="Add more categories here" />
-      </StyledButton>
-      <StyledButton onClick={handleClickToCancel}>
-        <img src={cancel} alt="Don't add category and cancel" />
-      </StyledButton>
-    </StyledForm>
+    <div>
+      <StyledForm onSubmit={handleClickToAddCategory}>
+        <input
+          type="text"
+          onChange={event => setInput(event.target.value)}
+          value={input}
+          aria-label="Add category"
+          name="Add category"
+          maxLength="20"
+          minLength="3"
+          required
+          placeholder="Add new category..."
+        ></input>
+        <StyledButton type="submit">
+          <img src={add} alt="Add more categories here" />
+        </StyledButton>
+        <StyledButton onClick={handleClickToCancel}>
+          <img src={cancel} alt="Don't add category and cancel" />
+        </StyledButton>
+      </StyledForm>
+      {error && <p>{error}</p>}
+    </div>
   );
 }
 

@@ -1,29 +1,26 @@
 import styled from 'styled-components/macro';
+import { nanoid } from 'nanoid';
 
-export default function FilterNotes({ active, setActive, setFilter, setSearchInput }) {
+export default function FilterNotes({ active, setActive, setFilter, setSearchInput, categories }) {
   function handleOnClick(event) {
-    setFilter(event.target.name);
-    setActive(event.target.name);
+    setFilter(event.target.value);
+    setActive(event.target.value);
     setSearchInput('');
   }
 
   return (
     <Wrapper>
-      <Button name="all" active={active === 'all'} onClick={handleOnClick}>
-        all
-      </Button>
-      <Button name="family" active={active === 'family'} onClick={handleOnClick}>
-        family
-      </Button>
-      <Button name="friends" active={active === 'friends'} onClick={handleOnClick}>
-        friends
-      </Button>
-      <Button name="vacation" active={active === 'vacation'} onClick={handleOnClick}>
-        vacation
-      </Button>
-      <Button name="others" active={active === 'others'} onClick={handleOnClick}>
-        others
-      </Button>
+      {categories.map(category => (
+        <Button
+          key={nanoid()}
+          name={category}
+          value={category}
+          active={active === category}
+          onClick={handleOnClick}
+        >
+          {category}
+        </Button>
+      ))}
     </Wrapper>
   );
 }

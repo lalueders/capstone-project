@@ -6,7 +6,7 @@ import FilterNotes from '../components/FilterNotes';
 import SearchNotes from '../components/SearchNotes';
 import { useState } from 'react';
 
-export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmitted }) {
+export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmitted, categories }) {
   const [filterResult, setFilterResult] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [active, setActive] = useState('all');
@@ -51,6 +51,7 @@ export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmit
         notes={notes}
         setActive={setActive}
         active={active}
+        categories={categories}
       />
       {notes.length === 0 ? <EmptyListMessage /> : ''}
       {isFormSubmitted ? (
