@@ -52,12 +52,12 @@ export default function ImageUpload({ setImage, image }) {
           <CancelButton onClick={handleRemoveImage}>
             <img src={cancel} width="35" alt="Thumb" />
           </CancelButton>
-          <img src={image} alt="Delete" style={{ width: '100%', cursor: 'pointer' }} />
+          <img src={image} alt="Delete" height="auto" width="100%" />
         </Preview>
       ) : (
         <div>
           <label htmlFor="file-upload">
-            <img src={select} alt="upload" style={{ width: '35px', cursor: 'pointer' }} />
+            <img src={select} alt="upload" width="35" height="35" />
           </label>
           <input data-testid="file-upload" id="file-upload" type="file" onChange={upload} hidden />
         </div>

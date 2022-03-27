@@ -6,11 +6,21 @@ export default createGlobalStyle`
     margin: 0;
   }
 
+  :root {
+    --white: #ffffff;
+    --grey: #F2F0F0;
+    --darkblue: #394a59;
+    --blue: #dce6f2;
+    --lightblue: #A3AFBF;
+
+  }
+
   body {
-    max-width: 600px;
-    background: #F2F0F0;
     margin: 0 auto;
-    font-family: 'Open Sans', sans-serif;
+    max-width: 600px;
+    min-height: 100vh;
+    background-color: var(--grey);
+    font-family: 'Open Sans', Helvetica, sans-serif;
     font-size: 1rem;
     line-height: 1.2;
   }
@@ -21,17 +31,16 @@ export default createGlobalStyle`
  {
     resize: none;
     font-size: 1rem;
-    font-family: 'Open Sans', sans-serif;
-    color: #394a59;
-    background: #ffffff;
+    font-family: inherit;
+    color: var(--darkblue);
+    background: var(--white);
     border-radius: 4px;
     border: 1px solid #394a59;
     padding: 0.5rem;
   }
   input:focus {
-    color: #394a59;
+    color: var(--darkblue);
   }
-
 
   .sr-only{
     position: absolute;

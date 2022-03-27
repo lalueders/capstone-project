@@ -39,10 +39,10 @@ export default function AddCategories({ categories, addCategory, toggleAddCatego
           placeholder="Add new category..."
         ></input>
         <StyledButton type="submit">
-          <img src={add} alt="Add more categories here" />
+          <img src={add} width="20" height="20" alt="Add more categories here" />
         </StyledButton>
         <StyledButton onClick={handleClickToCancel}>
-          <img src={cancel} alt="Don't add category and cancel" />
+          <img src={cancel} width="20" height="20" alt="Don't add category and cancel" />
         </StyledButton>
       </StyledForm>
       {error && <p>{error}</p>}
@@ -71,7 +71,4 @@ const StyledButton = styled.button`
   padding: 0;
   background: inherit;
   border: none;
-  img {
-    height: 20px;
-  }
 `;

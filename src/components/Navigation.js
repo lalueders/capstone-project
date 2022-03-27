@@ -33,7 +33,7 @@ const StyledNav = styled.nav`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  background: #394a59;
+  background: var(--darkblue);
   border-bottom: 0.5rem solid #f2f0f0;
   padding: 0 0.5rem;
 `;
@@ -46,7 +46,7 @@ const StyledNavLink = styled(NavLink)`
 
 const StyledButton = styled.button`
   height: 40px;
-  background: #394a59;
+  background: var(--darkblue);
   border: none;
   border-radius: 8px;
   padding: 0.25rem 0.5rem;
@@ -57,6 +57,6 @@ const StyledButton = styled.button`
 `;
 
 const Title = styled.p`
-  color: #dce6f2;
+  color: var(--blue);
   font-size: 1.25rem;
 `;
