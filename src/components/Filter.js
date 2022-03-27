@@ -1,11 +1,19 @@
 import styled from 'styled-components/macro';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-export default function FilterNotes({ active, setActive, setFilter, setSearchInput, categories }) {
+export default function Filter({ filterNotes, setSearchInput, categories }) {
+  const [active, setActive] = useState();
+
   function handleOnClick(event) {
-    setFilter(event.target.value);
-    setActive(event.target.value);
-    setSearchInput('');
+    if (event.target.value !== active) {
+      setSearchInput('');
+      setActive(event.target.value);
+      filterNotes(event.target.value);
+    } else {
+      setActive('');
+      filterNotes('');
+    }
   }
 
   return (

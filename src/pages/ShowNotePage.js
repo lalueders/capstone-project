@@ -2,33 +2,20 @@ import styled from 'styled-components';
 import Note from '../components/Note';
 import EmptyListMessage from '../components/EmptyListMessage.js';
 import AddButton from '../components/AddButton';
-import FilterNotes from '../components/FilterNotes';
+import Filter from '../components/Filter';
 import SearchNotes from '../components/SearchNotes';
 import { useState } from 'react';
 
-export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmitted, categories }) {
-  const [filterResult, setFilterResult] = useState('');
+export default function ShowNotePage({
+  editNote,
+  deleteNote,
+  notes,
+  isFormSubmitted,
+  categories,
+  filterNotes,
+  filterResult,
+}) {
   const [searchInput, setSearchInput] = useState('');
-  const [active, setActive] = useState('all');
-
-  const setFilter = filter => {
-    switch (filter) {
-      case 'family':
-        setFilterResult(notes.filter(note => note.categories.includes(filter)));
-        break;
-      case 'friends':
-        setFilterResult(notes.filter(note => note.categories.includes(filter)));
-        break;
-      case 'vacation':
-        setFilterResult(notes.filter(note => note.categories.includes(filter)));
-        break;
-      case 'others':
-        setFilterResult(notes.filter(note => note.categories.includes(filter)));
-        break;
-      default:
-        setFilterResult(notes);
-    }
-  };
 
   const searchNotes = notes.filter(note => {
     if (searchInput.toLowerCase() === '') {
@@ -43,15 +30,13 @@ export default function ShowNotePage({ editNote, deleteNote, notes, isFormSubmit
       <SearchNotes
         setSearchInput={setSearchInput}
         searchInput={searchInput}
-        setActive={setActive}
+        searchNotes={searchNotes}
       />
-      <FilterNotes
-        setFilter={setFilter}
+      <Filter
+        filterNotes={filterNotes}
         setSearchInput={setSearchInput}
-        notes={notes}
-        setActive={setActive}
-        active={active}
         categories={categories}
+        filterResult={filterResult}
       />
       {notes.length === 0 ? <EmptyListMessage /> : ''}
       {isFormSubmitted ? (

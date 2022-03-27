@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import FilterNotes from './FilterNotes';
+import Filter from './Filter';
 
-describe('FilterNotes', () => {
+describe('Filter', () => {
   it('renders five buttons', () => {
-    render(<FilterNotes />);
+    render(<Filter />);
 
     const button1 = screen.getByRole('button', { name: /all/i });
     const button2 = screen.getByRole('button', { name: /family/i });

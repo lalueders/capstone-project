@@ -95,6 +95,9 @@ function App() {
 
   const [categories, setCategories] = useState(['family', 'friends', 'vacation', 'others']);
   const [noteToEdit, setNoteToEdit] = useState();
+  const [filterResult, setFilterResult] = useState('');
+
+  const [searchInput, setSearchInput] = useState('');
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const navigate = useNavigate();
 
@@ -122,10 +125,13 @@ function App() {
     setCategories([input, ...categories]);
   };
 
+  function filterNotes(filter) {
+    setFilterResult(notes.filter(note => note.categories.includes(filter)));
+  }
+
   return (
     <Grid>
       <Navigation />
-
       <Routes>
         <Route
           path="/"
@@ -136,7 +142,11 @@ function App() {
               isFormSubmitted={isFormSubmitted}
               deleteNote={deleteNote}
               editNote={editNote}
+              filterNotes={filterNotes}
+              filterResult={filterResult}
               categories={categories}
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
             />
           }
         />

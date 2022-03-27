@@ -70,7 +70,6 @@ export default function AddNote({ addCategory, categories, setNotes, notes }) {
     data.location = location;
     data.categories = categoriesSelected;
     data.img = image;
-    console.log(data);
     setNotes([data, ...notes]);
     navigate('../');
   }

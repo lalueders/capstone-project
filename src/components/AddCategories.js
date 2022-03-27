@@ -24,8 +24,6 @@ export default function AddCategories({ categories, addCategory, toggleAddCatego
     }
   }
 
-  console.log(input.toLowerCase());
-
   return (
     <div>
       <StyledForm onSubmit={handleClickToAddCategory}>
