@@ -4,10 +4,11 @@ import { MemoryRouter } from 'react-router-dom';
 import AddNote from './AddNote';
 
 describe('Form', () => {
-  it('renders a form with three inputs and a button', () => {
+  it('renders a form with 4 inputs and a button', () => {
+    const mockCategories = ['family', 'friends', 'vacation', 'others'];
     render(
       <MemoryRouter>
-        <AddNote />
+        <AddNote categories={mockCategories} />
       </MemoryRouter>
     );
     const fileInput = screen.getByTestId('file-upload');
@@ -26,22 +27,23 @@ describe('Form', () => {
     const mockHandleFormSubmit = jest.fn();
     const mockSetNotes = jest.fn();
     const mockShowFormSubmitMessage = jest.fn();
-    const testData = [
+    const mockNotes = [
       {
         date: '2022-07-09',
-        categories: 'family, friends',
         location: 'Hamburg',
         title: 'Capstone Projekt gestartet',
         text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab...',
       },
     ];
+    const mockCategories = ['family', 'friends', 'vacation', 'others'];
     render(
       <MemoryRouter>
         <AddNote
           setNotes={mockSetNotes}
-          notes={testData}
+          notes={mockNotes}
           onSubmit={mockHandleFormSubmit}
           showFormSubmitMessage={mockShowFormSubmitMessage}
+          categories={mockCategories}
         />
       </MemoryRouter>
     );
