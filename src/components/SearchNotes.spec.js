@@ -9,14 +9,7 @@ describe('Searchbar', () => {
     const searchInput = screen.getByRole('searchbox');
     expect(searchInput).toBeInTheDocument();
   });
-  it('click on search input change state of active', () => {
-    const mockSetActive = jest.fn();
-    render(<SearchNotes setActive={mockSetActive} />);
 
-    const searchInput = screen.getByRole('searchbox');
-    userEvent.click(searchInput);
-    expect(mockSetActive).toHaveBeenCalled();
-  });
   it('type in search input change state of searchInput', () => {
     const mockSetActive = jest.fn();
     const mockSetSearchInput = jest.fn();
