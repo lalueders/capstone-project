@@ -42,7 +42,7 @@ const Wrapper = styled.div`
   position: fixed;
   padding: 3.5rem 0.5rem 0.5rem;
   width: 100%;
-  overflow: auto;
+  overflow: scroll;
 `;
 
 const Button = styled.button`

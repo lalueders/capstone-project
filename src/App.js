@@ -164,7 +164,14 @@ function App() {
         />
         <Route
           path="edit"
-          element={<EditNotePage noteToEdit={noteToEdit} updateNote={updateNote} />}
+          element={
+            <EditNotePage
+              noteToEdit={noteToEdit}
+              updateNote={updateNote}
+              categories={categories}
+              addCategory={addCategory}
+            />
+          }
         />
       </Routes>
     </Grid>
