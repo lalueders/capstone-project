@@ -153,9 +153,9 @@ export default function AddNote({ addCategory, categories, setNotes, notes }) {
           placeholder="Write your note here..."
         />
         {errors.title?.message && <p>{errors.title?.message}</p>}
+        <ImageUpload setImage={setImage} image={image} />
         <StyledButton type="submit">SAVE</StyledButton>
       </StyledForm>
-      <ImageUpload setImage={setImage} image={image} />
     </Wrapper>
   );
 }
@@ -174,21 +174,15 @@ const Wrapper = styled.section`
 const StyledForm = styled.form`
   display: grid;
   gap: 0.5rem;
+  textarea {
+    height: 200px;
+  }
 `;
 
 const DateInput = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-
-  /* input[type='date'] {
-    padding: 1rem 0;
-    border: none;
-    border-radius: 0;
-    background: inherit;
-
-    outline: none;
-  } */
   svg {
     fill: #394a59;
     width: 20px;

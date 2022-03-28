@@ -119,8 +119,15 @@ export default function EditNote({ updateNote, noteToEdit, addCategory, categori
           type="text"
           aria-label="text"
           placeholder="Write your note here..."
+          height="200px"
         />
         {errors.title?.message && <p>{errors.title?.message}</p>}
+        <ImageUpload
+          image={image}
+          setImage={setImage}
+          imageToEdit={imageToEdit}
+          setImageToEdit={setImageToEdit}
+        />
         <SubmitWrapper>
           <button type="button" onClick={() => navigate('/')}>
             CANCEL
@@ -128,12 +135,6 @@ export default function EditNote({ updateNote, noteToEdit, addCategory, categori
           <button type="submit">SAVE</button>
         </SubmitWrapper>
       </StyledForm>
-      <ImageUpload
-        image={image}
-        setImage={setImage}
-        imageToEdit={imageToEdit}
-        setImageToEdit={setImageToEdit}
-      />
     </Wrapper>
   );
 }
@@ -166,6 +167,9 @@ const StyledTags = styled.button`
 const StyledForm = styled.form`
   display: grid;
   gap: 0.5rem;
+  textarea {
+    height: 200px;
+  }
 `;
 
 const DateInput = styled.div`
