@@ -6,18 +6,21 @@ const mockUpdateNote = jest.fn();
 const mockNoteToEdit = [
   {
     date: '2022-07-09',
-    categories: ['family', 'friends'],
     location: 'Hamburg',
     title: 'Capstone Projekt gestartet',
     text: 'Es geht los! Schauen wir mal, ob ich in vier Wochen eine funktionierende App gebaut hab...',
   },
 ];
-
+const mockCategories = ['family', 'friends', 'vacation', 'others'];
 describe('EditNote', () => {
   it('renders a form with 4 inputs and 2 buttons', () => {
     render(
       <MemoryRouter>
-        <EditNote noteToEdit={mockNoteToEdit} updateNote={mockUpdateNote} />
+        <EditNote
+          noteToEdit={mockNoteToEdit}
+          updateNote={mockUpdateNote}
+          categories={mockCategories}
+        />
       </MemoryRouter>
     );
     const locationInput = screen.getByLabelText('location');

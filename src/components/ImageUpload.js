@@ -7,7 +7,7 @@ import cancel from '../assets/cancelUpload.svg';
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
-export default function ImageUpload({ setImage, image }) {
+export default function ImageUpload({ setImage, image, imageToEdit, setImageToEdit }) {
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
 
@@ -40,19 +40,21 @@ export default function ImageUpload({ setImage, image }) {
 
   function handleRemoveImage() {
     setImage('');
+    setImageToEdit('');
     setProcess(0);
     setLoading(false);
   }
 
+  console.log(imageToEdit);
   return (
     <>
       {loading && <div>Uploading Image...{process}%</div>}
-      {image ? (
+      {image || imageToEdit ? (
         <Preview>
           <CancelButton onClick={handleRemoveImage}>
             <img src={cancel} width="35" alt="Thumb" />
           </CancelButton>
-          <img src={image} alt="Delete" height="auto" width="100%" />
+          <img src={imageToEdit ? imageToEdit : image} alt="Delete" height="auto" width="100%" />
         </Preview>
       ) : (
         <div>
