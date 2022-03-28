@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { nanoid } from 'nanoid';
+import { useNavigate } from 'react-router-dom';
 import AddCategories from './AddCategories';
 import ImageUpload from './ImageUpload';
 import addIcon from '../assets/iconAdd.svg';
@@ -12,7 +12,7 @@ export default function EditNote({ updateNote, noteToEdit, addCategory, categori
   const [isToEdit, setIsToEdit] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [categoriesSelected, setCategoriesSelected] = useState(noteToEdit.categories);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,12 +32,10 @@ export default function EditNote({ updateNote, noteToEdit, addCategory, categori
   }
 
   function onSubmit(data) {
-    if (noteToEdit.categories.length === 0) {
-      data.categories = ['others'];
-    } else {
-      data.categories = categoriesSelected;
-    }
-    data.img = image;
+    noteToEdit.categories.length === 0
+      ? (data.categories = ['others'])
+      : (data.categories = categoriesSelected);
+    imageToEdit ? (data.img = imageToEdit) : (data.img = image);
     updateNote(data);
   }
 
@@ -56,18 +54,18 @@ export default function EditNote({ updateNote, noteToEdit, addCategory, categori
       <StyledCategories>
         {!isToEdit && (
           <Button onClick={toggleAddCategories}>
-            <img src={addIcon} alt="Add more categories" />
+            <img src={addIcon} alt="Add more categories" width="20" height="20" />
           </Button>
         )}
         {categories.map(category => (
-          <CategoryTags
-            key={nanoid()}
+          <StyledTags
+            key={category}
             value={category}
             active={categoriesSelected.includes(category)}
             onClick={handleCategorySelect}
           >
             {category}
-          </CategoryTags>
+          </StyledTags>
         ))}
       </StyledCategories>
       {isToEdit && (
@@ -123,11 +121,16 @@ export default function EditNote({ updateNote, noteToEdit, addCategory, categori
           placeholder="Write your note here..."
         />
         {errors.title?.message && <p>{errors.title?.message}</p>}
-        <StyledButton type="submit">SAVE</StyledButton>
+        <SubmitWrapper>
+          <button type="button" onClick={() => navigate('/')}>
+            CANCEL
+          </button>
+          <button type="submit">SAVE</button>
+        </SubmitWrapper>
       </StyledForm>
       <ImageUpload
-        setImage={setImage}
         image={image}
+        setImage={setImage}
         imageToEdit={imageToEdit}
         setImageToEdit={setImageToEdit}
       />
@@ -141,6 +144,25 @@ const Wrapper = styled.section`
   margin: 0.5rem;
 `;
 
+const StyledCategories = styled.section`
+  overflow: scroll;
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const StyledTags = styled.button`
+  background: ${props => (props.active ? '#394a59' : '#ffffff')};
+  border: 1px solid ${props => (props.active ? '#ffffff' : '#394a59')};
+  color: ${props => (props.active ? '#ffffff' : '#394a59')};
+  user-select: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+`;
+
 const StyledForm = styled.form`
   display: grid;
   gap: 0.5rem;
@@ -150,54 +172,10 @@ const DateInput = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-
   svg {
     fill: #394a59;
     width: 20px;
     cursor: pointer;
-  }
-`;
-
-const StyledCategories = styled.section`
-  overflow: scroll;
-  display: flex;
-  gap: 0.5rem;
-`;
-
-const CategoryTags = styled.button`
-  background: ${props => (props.active ? '#394a59' : '#ffffff')};
-  border: 1px solid ${props => (props.active ? '#ffffff' : '#394a59')};
-  color: ${props => (props.active ? '#ffffff' : '#394a59')};
-  user-select: none;
-  border-radius: 4px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  text-decoration: none;
-
-  white-space: nowrap;
-`;
-
-const StyledButton = styled.button`
-  background: #394a59;
-  color: #dce6f2;
-  font-size: 1.25rem;
-  border: none;
-  border-radius: 4px;
-  padding: 0.75rem;
-  cursor: pointer;
-`;
-
-const Button = styled.button`
-  position: sticky;
-  left: 0;
-  background: #f2f0f0;
-  display: flex;
-  align-items: center;
-  border: none;
-  height: 100%;
-
-  img {
-    height: 20px;
   }
 `;
 
@@ -210,4 +188,32 @@ const StyledLocationInput = styled.input`
   border-radius: 4px;
   border: 1px solid #394a59;
   padding: 0.5rem;
+`;
+
+const Button = styled.button`
+  position: sticky;
+  left: 0;
+  background: #f2f0f0;
+  display: flex;
+  align-items: center;
+  border: none;
+  height: 100%;
+  cursor: pointer;
+`;
+
+const SubmitWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.75rem;
+  justify-content: space-between;
+
+  button {
+    background: #394a59;
+    color: #dce6f2;
+    font-size: 1.25rem;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem;
+    cursor: pointer;
+  }
 `;

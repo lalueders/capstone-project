@@ -45,7 +45,6 @@ export default function ImageUpload({ setImage, image, imageToEdit, setImageToEd
     setLoading(false);
   }
 
-  console.log(imageToEdit);
   return (
     <>
       {loading && <div>Uploading Image...{process}%</div>}
