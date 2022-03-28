@@ -5,12 +5,41 @@ export default createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
   }
+
+  :root {
+    --white: #ffffff;
+    --grey: #F2F0F0;
+    --darkblue: #394a59;
+    --blue: #dce6f2;
+    --lightblue: #A3AFBF;
+
+  }
+
   body {
     margin: 0 auto;
     max-width: 600px;
-    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
+    background-color: var(--grey);
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-size: 1rem;
     line-height: 1.2;
-    background: #F2F0F0;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  textarea
+ {
+    resize: none;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--darkblue);
+    background: var(--white);
+    border-radius: 4px;
+    border: 1px solid #394a59;
+    padding: 0.5rem;
+  }
+  input:focus {
+    color: var(--darkblue);
   }
 
   .sr-only{

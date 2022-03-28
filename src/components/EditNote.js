@@ -27,6 +27,7 @@ export default function EditNote({ updateNote, noteToEdit }) {
           } else {
             data.categories = noteToEdit.categories;
           }
+          data.img = noteToEdit.img;
           updateNote(data);
         })}
       >

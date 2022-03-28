@@ -1,12 +1,11 @@
 import styled from 'styled-components/macro';
 
-export default function SearchNotes({ setActive, searchInput, setSearchInput }) {
+export default function SearchNotes({ searchInput, setSearchInput }) {
   function handleSearchInput(event) {
     setSearchInput(event.target.value);
   }
 
   function handleClickOnSearch(event) {
-    setActive('all');
     event.target.select();
   }
 

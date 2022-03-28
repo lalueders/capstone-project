@@ -1,10 +1,22 @@
 import styled from 'styled-components';
 import AddNote from '../components/AddNote';
 
-export default function AddNotePage({ notes, setNotes, showFormSubmitMessage }) {
+export default function AddNotePage({
+  notes,
+  setNotes,
+  showFormSubmitMessage,
+  addCategory,
+  categories,
+}) {
   return (
     <StyledPage>
-      <AddNote setNotes={setNotes} notes={notes} showFormSubmitMessage={showFormSubmitMessage} />
+      <AddNote
+        setNotes={setNotes}
+        notes={notes}
+        showFormSubmitMessage={showFormSubmitMessage}
+        addCategory={addCategory}
+        categories={categories}
+      />
     </StyledPage>
   );
 }

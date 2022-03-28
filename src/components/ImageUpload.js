@@ -7,8 +7,7 @@ import cancel from '../assets/cancelUpload.svg';
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
-export default function ImageUpload({ inputData }) {
-  const [image, setImage] = useState('');
+export default function ImageUpload({ setImage, image }) {
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
 
@@ -35,13 +34,12 @@ export default function ImageUpload({ inputData }) {
   }
 
   function onImageSave(response) {
-    inputData.img = response.data.url;
     setImage(response.data.url);
     setLoading(false);
   }
 
   function handleRemoveImage() {
-    setImage();
+    setImage('');
     setProcess(0);
     setLoading(false);
   }
@@ -54,12 +52,12 @@ export default function ImageUpload({ inputData }) {
           <CancelButton onClick={handleRemoveImage}>
             <img src={cancel} width="35" alt="Thumb" />
           </CancelButton>
-          <img src={inputData.img} alt="Delete" style={{ width: '100%', cursor: 'pointer' }} />
+          <img src={image} alt="Delete" height="auto" width="100%" />
         </Preview>
       ) : (
         <div>
           <label htmlFor="file-upload">
-            <img src={select} alt="upload" style={{ width: '35px', cursor: 'pointer' }} />
+            <img src={select} alt="upload" width="35" height="35" />
           </label>
           <input data-testid="file-upload" id="file-upload" type="file" onChange={upload} hidden />
         </div>

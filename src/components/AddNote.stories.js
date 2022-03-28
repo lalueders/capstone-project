@@ -7,4 +7,6 @@ export default {
 const Template = args => <AddNote {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  categories: ['family', 'friends', 'vacation', 'others'],
+};

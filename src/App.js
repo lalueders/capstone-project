@@ -93,7 +93,11 @@ function App() {
     },
   ]);
 
+  const [categories, setCategories] = useState(['family', 'friends', 'vacation', 'others']);
   const [noteToEdit, setNoteToEdit] = useState();
+  const [filterResult, setFilterResult] = useState('');
+
+  const [searchInput, setSearchInput] = useState('');
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const navigate = useNavigate();
 
@@ -117,10 +121,17 @@ function App() {
     navigate('/');
   };
 
+  const addCategory = input => {
+    setCategories([input, ...categories]);
+  };
+
+  function filterNotes(filter) {
+    setFilterResult(notes.filter(note => note.categories.includes(filter)));
+  }
+
   return (
     <Grid>
       <Navigation />
-
       <Routes>
         <Route
           path="/"
@@ -131,6 +142,11 @@ function App() {
               isFormSubmitted={isFormSubmitted}
               deleteNote={deleteNote}
               editNote={editNote}
+              filterNotes={filterNotes}
+              filterResult={filterResult}
+              categories={categories}
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
             />
           }
         />
@@ -141,12 +157,21 @@ function App() {
               setNotes={setNotes}
               notes={notes}
               showFormSubmitMessage={showFormSubmitMessage}
+              addCategory={addCategory}
+              categories={categories}
             />
           }
         />
         <Route
           path="edit"
-          element={<EditNotePage noteToEdit={noteToEdit} updateNote={updateNote} />}
+          element={
+            <EditNotePage
+              noteToEdit={noteToEdit}
+              updateNote={updateNote}
+              categories={categories}
+              addCategory={addCategory}
+            />
+          }
         />
       </Routes>
     </Grid>
