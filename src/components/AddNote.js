@@ -86,30 +86,32 @@ export default function AddNote({ addCategory, categories, setNotes, notes }) {
 
   return (
     <Wrapper>
-      <StyledCategories>
-        {!isToEdit && (
-          <Button onClick={toggleAddCategories}>
-            <img src={addIcon} alt="Add more categories" />
-          </Button>
+      <CategoriesGrid>
+        <StyledCategories>
+          {!isToEdit && (
+            <Button onClick={toggleAddCategories}>
+              <img src={addIcon} alt="Add more categories" />
+            </Button>
+          )}
+          {categories.map(category => (
+            <CategoryTags
+              key={nanoid()}
+              value={category}
+              active={categoriesSelected.includes(category)}
+              onClick={handleCategorySelect}
+            >
+              {category}
+            </CategoryTags>
+          ))}
+        </StyledCategories>
+        {isToEdit && (
+          <AddCategories
+            addCategory={addCategory}
+            toggleAddCategories={toggleAddCategories}
+            categories={categories}
+          />
         )}
-        {categories.map(category => (
-          <CategoryTags
-            key={nanoid()}
-            value={category}
-            active={categoriesSelected.includes(category)}
-            onClick={handleCategorySelect}
-          >
-            {category}
-          </CategoryTags>
-        ))}
-      </StyledCategories>
-      {isToEdit && (
-        <AddCategories
-          addCategory={addCategory}
-          toggleAddCategories={toggleAddCategories}
-          categories={categories}
-        />
-      )}
+      </CategoriesGrid>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <DateInput>
           <input
@@ -128,11 +130,7 @@ export default function AddNote({ addCategory, categories, setNotes, notes }) {
           </label>
         </DateInput>
         {errors.title?.message && <p>{errors.title?.message}</p>}
-        {status ? (
-          <StyledLocation>{status}</StyledLocation>
-        ) : (
-          <StyledLocation>{location}</StyledLocation>
-        )}
+        <Location>{status ? <p>{status}</p> : <p>{location}</p>}</Location>
         <input
           {...register('title', {
             required: 'This is required.',
@@ -160,22 +158,31 @@ export default function AddNote({ addCategory, categories, setNotes, notes }) {
   );
 }
 
-const StyledLocation = styled.p`
-  color: #394a59;
-  font-size: 1rem;
-`;
-
 const Wrapper = styled.section`
+  height: calc(100vh - 64px);
+  grid-template-rows: auto 1fr;
   display: grid;
   gap: 0.5rem;
   margin: 0.5rem;
 `;
 
-const StyledForm = styled.form`
+const CategoriesGrid = styled.section`
   display: grid;
   gap: 0.5rem;
+  margin: 0.5rem;
+`;
+
+const Location = styled.section`
+  color: var(--darkblue);
+`;
+
+const StyledForm = styled.form`
+  height: 100%;
+  grid-template-rows: auto auto auto 5fr auto auto;
+  display: grid;
+  gap: 1rem;
   textarea {
-    height: 200px;
+    /* height: 200px; */
   }
 `;
 
@@ -183,6 +190,9 @@ const DateInput = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  img {
+    fill: red;
+  }
   svg {
     fill: #394a59;
     width: 20px;

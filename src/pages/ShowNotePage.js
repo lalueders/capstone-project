@@ -107,6 +107,7 @@ const StyledPage = styled.main`
 
 const Header = styled.header`
   max-width: 600px;
+  width: 100%;
   position: fixed;
   top: 0;
   display: grid;
