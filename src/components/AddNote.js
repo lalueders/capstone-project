@@ -178,7 +178,7 @@ const Location = styled.section`
 
 const StyledForm = styled.form`
   height: 100%;
-  grid-template-rows: auto auto auto 5fr auto auto;
+  grid-template-rows: auto auto auto 1fr auto auto;
   display: grid;
   gap: 1rem;
   textarea {
