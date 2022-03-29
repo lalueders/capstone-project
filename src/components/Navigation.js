@@ -1,62 +1,39 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import iconFeather from '../assets/icon_feather_light.png';
-import iconList from '../assets/icon_list--light.png';
+import iconFeather from '../assets/iconFeather--light.svg';
+import iconList from '../assets/iconList--light.svg';
 
 export default function Navigation() {
   return (
     <StyledNav>
       <StyledNavLink to="/">
-        <StyledButton>
-          <img src={iconList} alt="go to list" />
-        </StyledButton>
+        <img src={iconList} height="20" width="auto" alt="Go to my list of notes" />
       </StyledNavLink>
-      <Title>My Notes</Title>
+      <h2>My Notes</h2>
       <StyledNavLink to="/add">
-        <StyledButton>
-          <img src={iconFeather} alt="add note" />
-        </StyledButton>
+        <img src={iconFeather} height="30" width="auto" alt="Create a new note" />
       </StyledNavLink>
     </StyledNav>
   );
 }
 
 const StyledNav = styled.nav`
-  position: fixed;
-  height: 64px;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 1;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   background: var(--darkblue);
-  border-bottom: 0.5rem solid #f2f0f0;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
+
+  h2 {
+    color: var(--blue);
+    font-size: 1.25rem;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
   &.active {
     opacity: 35%;
   }
-`;
-
-const StyledButton = styled.button`
-  height: 40px;
-  background: var(--darkblue);
-  border: none;
-  border-radius: 8px;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-  img {
-    height: 100%;
-  }
-`;
-
-const Title = styled.p`
-  color: var(--blue);
-  font-size: 1.25rem;
 `;

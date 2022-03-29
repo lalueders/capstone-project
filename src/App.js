@@ -93,7 +93,13 @@ function App() {
     },
   ]);
 
-  const [categories, setCategories] = useState(['family', 'friends', 'vacation', 'others']);
+  const [categories, setCategories] = useState([
+    'family',
+    'friends',
+    'vacation',
+    'sports',
+    'others',
+  ]);
   const [noteToEdit, setNoteToEdit] = useState();
   const [filterResult, setFilterResult] = useState('');
 
@@ -131,7 +137,7 @@ function App() {
 
   return (
     <Grid>
-      <Navigation />
+      {/* <Navigation /> */}
       <Routes>
         <Route
           path="/"
@@ -181,6 +187,7 @@ function App() {
 export default App;
 
 const Grid = styled.div`
+  max-width: 600px;
   height: 100vh;
   position: relative;
   display: grid;

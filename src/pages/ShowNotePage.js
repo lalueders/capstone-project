@@ -5,6 +5,7 @@ import AddButton from '../components/AddButton';
 import Filter from '../components/Filter';
 import SearchNotes from '../components/SearchNotes';
 import { useState } from 'react';
+import Navigation from '../components/Navigation';
 
 export default function ShowNotePage({
   editNote,
@@ -21,23 +22,26 @@ export default function ShowNotePage({
     if (searchInput.toLowerCase() === '') {
       return note;
     } else {
-      return note.title.toLowerCase().includes(searchInput.toLowerCase().trim());
+      return note.text.toLowerCase().includes(searchInput.toLowerCase().trim());
     }
   });
 
   return (
     <StyledPage>
-      <SearchNotes
-        setSearchInput={setSearchInput}
-        searchInput={searchInput}
-        searchNotes={searchNotes}
-      />
-      <Filter
-        filterNotes={filterNotes}
-        setSearchInput={setSearchInput}
-        categories={categories}
-        filterResult={filterResult}
-      />
+      <Header>
+        <Navigation />
+        <SearchNotes
+          setSearchInput={setSearchInput}
+          searchNotes={searchNotes}
+          searchInput={searchInput}
+        />
+        <Filter
+          setSearchInput={setSearchInput}
+          filterNotes={filterNotes}
+          filterResult={filterResult}
+          categories={categories}
+        />
+      </Header>
       {notes.length === 0 ? <EmptyListMessage /> : ''}
       {isFormSubmitted ? (
         <StyledMessage>
@@ -46,52 +50,50 @@ export default function ShowNotePage({
       ) : (
         ''
       )}
-      <NoteList>
-        {searchInput.length > 0
-          ? searchNotes.map(note => (
-              <Note
-                key={note.id}
-                id={note.id}
-                date={note.date}
-                title={note.title}
-                text={note.text}
-                location={note.location}
-                categories={note.categories}
-                img={note.img}
-                deleteNote={() => deleteNote(note.id)}
-                editNote={() => editNote(note.id)}
-              />
-            ))
-          : filterResult.length > 0
-          ? filterResult.map(note => (
-              <Note
-                key={note.id}
-                id={note.id}
-                date={note.date}
-                title={note.title}
-                text={note.text}
-                location={note.location}
-                categories={note.categories}
-                img={note.img}
-                deleteNote={() => deleteNote(note.id)}
-                editNote={() => editNote(note.id)}
-              />
-            ))
-          : notes.map(note => (
-              <Note
-                key={note.id}
-                id={note.id}
-                date={note.date}
-                title={note.title}
-                text={note.text}
-                location={note.location}
-                categories={note.categories}
-                img={note.img}
-                deleteNote={() => deleteNote(note.id)}
-                editNote={() => editNote(note.id)}
-              />
-            ))}
-      </NoteList>
+      {searchInput.length > 0
+        ? searchNotes.map(note => (
+            <Note
+              key={note.id}
+              id={note.id}
+              date={note.date}
+              title={note.title}
+              text={note.text}
+              location={note.location}
+              categories={note.categories}
+              img={note.img}
+              deleteNote={() => deleteNote(note.id)}
+              editNote={() => editNote(note.id)}
+            />
+          ))
+        : filterResult.length > 0
+        ? filterResult.map(note => (
+            <Note
+              key={note.id}
+              id={note.id}
+              date={note.date}
+              title={note.title}
+              text={note.text}
+              location={note.location}
+              categories={note.categories}
+              img={note.img}
+              deleteNote={() => deleteNote(note.id)}
+              editNote={() => editNote(note.id)}
+            />
+          ))
+        : notes.map(note => (
+            <Note
+              key={note.id}
+              id={note.id}
+              date={note.date}
+              title={note.title}
+              text={note.text}
+              location={note.location}
+              categories={note.categories}
+              img={note.img}
+              deleteNote={() => deleteNote(note.id)}
+              editNote={() => editNote(note.id)}
+            />
+          ))}
       <AddButton />
     </StyledPage>
   );
@@ -100,15 +102,20 @@ export default function ShowNotePage({
 const StyledPage = styled.main`
   width: 100%;
   position: absolute;
-  top: 64px;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  top: 146px;
 `;
 
-const NoteList = styled.div`
-  margin-top: 7rem;
+const Header = styled.header`
+  max-width: 600px;
+  position: fixed;
+  top: 0;
+  display: grid;
+  gap: 0.5rem;
+  background: var(--grey);
+  padding-bottom: 0.5rem;
+  border-bottom: 10px solid var(---grey);
 `;
+
 const StyledMessage = styled.p`
   font-size: 1rem;
   line-height: 1.5;

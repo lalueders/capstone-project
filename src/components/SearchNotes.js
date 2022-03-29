@@ -25,23 +25,11 @@ export default function SearchNotes({ searchInput, setSearchInput }) {
 }
 
 const Wrapper = styled.div`
-  background: #f2f0f0;
-  position: fixed;
-  z-index: 2;
-  top: 4rem;
-  width: 100%;
   max-width: 600px;
-  padding: 0.5rem;
+  margin: 0 0.5rem;
 `;
 
 const SearchInput = styled.input`
-  cursor: pointer;
   user-select: none;
   width: 100%;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #394a59;
-  color: #394a59;
-  resize: none;
-  font-size: 1rem;
 `;
