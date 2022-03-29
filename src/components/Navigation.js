@@ -24,7 +24,7 @@ const StyledNav = styled.nav`
   align-items: center;
   justify-content: space-between;
   background: var(--darkblue);
-  padding: 0.5rem;
+  padding: 0.75rem;
 
   h2 {
     color: var(--blue);

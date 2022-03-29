@@ -159,7 +159,7 @@ export default function AddNote({ addCategory, categories, setNotes, notes }) {
 }
 
 const Wrapper = styled.section`
-  height: calc(100vh - 64px);
+  height: calc(100vh - 72px);
   grid-template-rows: auto 1fr;
   display: grid;
   gap: 0.5rem;
@@ -169,7 +169,7 @@ const Wrapper = styled.section`
 const CategoriesGrid = styled.section`
   display: grid;
   gap: 0.5rem;
-  margin: 0.5rem;
+  padding: 0.5rem 0;
 `;
 
 const Location = styled.section`

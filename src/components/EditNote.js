@@ -51,30 +51,32 @@ export default function EditNote({ updateNote, noteToEdit, addCategory, categori
 
   return (
     <Wrapper>
-      <StyledCategories>
-        {!isToEdit && (
-          <Button onClick={toggleAddCategories}>
-            <img src={addIcon} alt="Add more categories" width="20" height="20" />
-          </Button>
+      <CategoriesGrid>
+        <StyledCategories>
+          {!isToEdit && (
+            <Button onClick={toggleAddCategories}>
+              <img src={addIcon} alt="Add more categories" width="20" height="20" />
+            </Button>
+          )}
+          {categories.map(category => (
+            <StyledTags
+              key={category}
+              value={category}
+              active={categoriesSelected.includes(category)}
+              onClick={handleCategorySelect}
+            >
+              {category}
+            </StyledTags>
+          ))}
+        </StyledCategories>
+        {isToEdit && (
+          <AddCategories
+            addCategory={addCategory}
+            toggleAddCategories={toggleAddCategories}
+            categories={categories}
+          />
         )}
-        {categories.map(category => (
-          <StyledTags
-            key={category}
-            value={category}
-            active={categoriesSelected.includes(category)}
-            onClick={handleCategorySelect}
-          >
-            {category}
-          </StyledTags>
-        ))}
-      </StyledCategories>
-      {isToEdit && (
-        <AddCategories
-          addCategory={addCategory}
-          toggleAddCategories={toggleAddCategories}
-          categories={categories}
-        />
-      )}
+      </CategoriesGrid>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <DateInput>
           <input
@@ -140,9 +142,17 @@ export default function EditNote({ updateNote, noteToEdit, addCategory, categori
 }
 
 const Wrapper = styled.section`
+  height: calc(100vh - 72px);
+  grid-template-rows: auto 1fr;
   display: grid;
   gap: 0.5rem;
   margin: 0.5rem;
+`;
+
+const CategoriesGrid = styled.section`
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
 `;
 
 const StyledCategories = styled.section`
@@ -165,8 +175,10 @@ const StyledTags = styled.button`
 `;
 
 const StyledForm = styled.form`
+  height: 100%;
+  grid-template-rows: auto auto auto 5fr auto auto;
   display: grid;
-  gap: 0.5rem;
+  gap: 1rem;
   textarea {
     height: 200px;
   }
@@ -209,7 +221,6 @@ const SubmitWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.75rem;
-  justify-content: space-between;
 
   button {
     background: #394a59;
