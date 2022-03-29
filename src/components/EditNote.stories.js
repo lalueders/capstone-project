@@ -17,4 +17,5 @@ Default.args = {
     location: 'Hamburg, Rotherbaum',
     categories: ['family', 'friends'],
   },
+  categories: ['family', 'friends', 'vacation', 'others'],
 };
