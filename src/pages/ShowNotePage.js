@@ -5,6 +5,7 @@ import AddButton from '../components/AddButton';
 import Filter from '../components/Filter';
 import SearchNotes from '../components/SearchNotes';
 import { useState } from 'react';
+import Navigation from '../components/Navigation';
 
 export default function ShowNotePage({
   editNote,
@@ -21,33 +22,30 @@ export default function ShowNotePage({
     if (searchInput.toLowerCase() === '') {
       return note;
     } else {
-      return note.title.toLowerCase().includes(searchInput.toLowerCase().trim());
+      return note.text.toLowerCase().includes(searchInput.toLowerCase().trim());
     }
   });
 
   return (
     <StyledPage>
-      <SearchNotes
-        setSearchInput={setSearchInput}
-        searchInput={searchInput}
-        searchNotes={searchNotes}
-      />
-      <Filter
-        filterNotes={filterNotes}
-        setSearchInput={setSearchInput}
-        categories={categories}
-        filterResult={filterResult}
-      />
+      <Header>
+        <Navigation />
+        <SearchNotes
+          setSearchInput={setSearchInput}
+          searchNotes={searchNotes}
+          searchInput={searchInput}
+        />
+        <Filter
+          setSearchInput={setSearchInput}
+          filterNotes={filterNotes}
+          filterResult={filterResult}
+          categories={categories}
+        />
+      </Header>
       {notes.length === 0 ? <EmptyListMessage /> : ''}
-      {isFormSubmitted ? (
-        <StyledMessage>
-          Got it!... But for the moment your notes will be deleted at page refresh 😟{' '}
-        </StyledMessage>
-      ) : (
-        ''
-      )}
-      <NoteList>
-        {searchInput.length > 0
+      {isFormSubmitted ? <StyledMessage>Got it!...😉</StyledMessage> : ''}
+      <NotesList>
+        {searchInput.length > 0 && searchNotes.length > 0
           ? searchNotes.map(note => (
               <Note
                 key={note.id}
@@ -91,24 +89,37 @@ export default function ShowNotePage({
                 editNote={() => editNote(note.id)}
               />
             ))}
-      </NoteList>
+      </NotesList>
       <AddButton />
     </StyledPage>
   );
 }
 
 const StyledPage = styled.main`
+  margin-top: 182px;
   width: 100%;
-  position: absolute;
-  top: 64px;
-  right: 0;
-  left: 0;
-  bottom: 0;
 `;
 
-const NoteList = styled.div`
-  margin-top: 7rem;
+const Header = styled.header`
+  max-width: 600px;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  display: grid;
+  gap: 0.5rem;
+  background: var(--grey);
+  padding-bottom: 1rem;
+  border-bottom: 10px solid var(---grey);
+  box-shadow: 0px 4px 3px -3px grey;
 `;
+
+const NotesList = styled.main`
+  margin: 0.5rem;
+  display: grid;
+  gap: 1rem;
+`;
+
 const StyledMessage = styled.p`
   font-size: 1rem;
   line-height: 1.5;
@@ -116,7 +127,7 @@ const StyledMessage = styled.p`
   text-align: center;
   background: #cde7b3;
   border-radius: 4px;
-  opacity: 0.75;
   padding: 1rem 1.5rem;
-  margin: 4.5rem 0.5rem 1rem 0.5rem;
+  margin: 0.5rem 1rem;
+  opacity: 0.75;
 `;

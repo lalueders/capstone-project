@@ -10,14 +10,13 @@ export default createGlobalStyle`
     --white: #ffffff;
     --grey: #F2F0F0;
     --darkblue: #394a59;
-    --blue: #dce6f2;
-    --lightblue: #A3AFBF;
+    --blue: #A3AFBF;
+    --lightblue: #dce6f2;
+
 
   }
 
   body {
-    margin: 0 auto;
-    max-width: 600px;
     min-height: 100vh;
     background-color: var(--grey);
     font-family: 'Open Sans', Helvetica, sans-serif;
@@ -27,6 +26,7 @@ export default createGlobalStyle`
 
   input[type="text"],
   input[type="date"],
+  input[type="search"],
   textarea
  {
     resize: none;

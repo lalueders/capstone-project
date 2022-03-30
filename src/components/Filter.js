@@ -34,25 +34,21 @@ export default function Filter({ filterNotes, setSearchInput, categories }) {
 }
 
 const Wrapper = styled.div`
-  background: var(--grey);
-  z-index: 1;
-  border-radius: 4px;
+  max-width: 600px;
+  margin: 0 0.5rem;
   display: flex;
   gap: 0.5rem;
-  position: fixed;
-  padding: 3.5rem 0.5rem 0.5rem;
-  width: 100%;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const Button = styled.button`
-  background: ${props => (props.active ? 'var(--darkblue)' : 'var(--white)')};
   border: 1px solid ${props => (props.active ? 'var(--white)' : 'var(--darkblue)')};
+  background: ${props => (props.active ? 'var(--darkblue)' : 'var(--white)')};
   color: ${props => (props.active ? 'var(--white)' : 'var(--darkblue)')};
-  user-select: none;
-  border-radius: 4px;
-  padding: 0.5rem;
   font-size: 1rem;
+  border-radius: 4px;
+  white-space: nowrap;
   text-decoration: none;
-  cursor: pointer;
+  padding: 0.5rem;
+  user-select: none;
 `;

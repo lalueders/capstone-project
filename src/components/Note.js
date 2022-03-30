@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import editIcon from '../assets/edit_icon--light.svg';
-import trashIcon from '../assets/trash_icon--light.svg';
+import edit from '../assets/iconEdit--light.svg';
+import remove from '../assets/iconRemove--light.svg';
 
 export default function Note({
   editNote,
@@ -14,45 +14,44 @@ export default function Note({
   img,
 }) {
   const [isSelected, setIsSelected] = useState(false);
-
   const handleOnClickNote = () => {
     setIsSelected(!isSelected);
   };
-
   const handleOnClickEdit = () => {
     editNote();
   };
 
   return (
     <Wrapper active={isSelected} onClick={handleOnClickNote}>
-      <Buttons hidden={isSelected}>
+      <Edit hidden={isSelected}>
         <button hidden={!isSelected} onClick={handleOnClickEdit}>
-          <img src={editIcon} alt="edit note" />
+          <img src={edit} height="20" width="20" alt="edit note" />
         </button>
         <button hidden={!isSelected} onClick={deleteNote}>
-          <img src={trashIcon} alt="delete note" />
+          <img src={remove} height="20" width="20" alt="delete note" />
         </button>
-      </Buttons>
-      <time>{date}</time>
-      {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
+      </Edit>
+      <Header active={isSelected}>
+        <time>{date}</time>
+        {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
+      </Header>
       <h2>{title}</h2>
       <p>{text}</p>
-      <StyledImage src={img} alt="" width="100%" />
-      <StyledList role="list">
+      <Image src={img} alt="" width="100%" />
+      <Categories role="list" active={isSelected}>
         {categories.map((category, index) => (
-          <li key={index}>{category}</li>
+          <li key={category}>{category}</li>
         ))}
-      </StyledList>
+      </Categories>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.section`
-  cursor: pointer;
-  background: ${props => (props.active ? '#394a59' : '')};
-  padding: ${props => (props.active ? '1.5rem' : '0.5rem')};
-  color: ${props => (props.active ? '#DCE6F2' : '#394a59')};
-  margin: 1rem 0.5rem;
+  user-select: none;
+  background: ${props => (props.active ? 'var(--darkblue)' : 'white')};
+  padding: ${props => (props.active ? '1rem' : '0.75rem')};
+  color: ${props => (props.active ? 'var(--lightblue)' : 'var(--darkblue)')};
   border: 1px solid;
   border-radius: 4px;
   display: grid;
@@ -60,36 +59,42 @@ const Wrapper = styled.section`
   word-break: break-word;
 `;
 
-const StyledList = styled.ul`
-  padding: 0;
+const Header = styled.time`
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: ${props => (props.active ? 'var(--blue)' : '#687B8C')};
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #687b8c;
+`;
+
+const Categories = styled.ul`
   list-style: none;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  color: ${props => (props.active ? 'var(--blue)' : '#687B8C')};
 
   li {
+    padding: 0.25rem;
+    font-size: 0.75rem;
     border: 1px solid;
     border-radius: 4px;
-    padding: 0.25rem;
   }
 `;
 
-const Buttons = styled.div`
+const Edit = styled.div`
   display: flex;
   justify-self: end;
   position: absolute;
-
   button {
     user-select: none;
-    cursor: pointer;
     border: none;
     background: none;
-    img {
-      height: 20px;
-    }
   }
 `;
 
-const StyledImage = styled.img`
+const Image = styled.img`
   border-radius: 4px;
 `;

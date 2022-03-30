@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import AddNote from '../components/AddNote';
+import Navigation from '../components/Navigation';
 
 export default function AddNotePage({
   notes,
@@ -10,6 +11,7 @@ export default function AddNotePage({
 }) {
   return (
     <StyledPage>
+      <Navigation />
       <AddNote
         setNotes={setNotes}
         notes={notes}
@@ -22,9 +24,6 @@ export default function AddNotePage({
 }
 
 const StyledPage = styled.main`
-  position: absolute;
-  top: 64px;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  height: 100vh;
+  width: 100%;
 `;
