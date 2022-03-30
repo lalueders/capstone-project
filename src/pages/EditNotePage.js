@@ -5,7 +5,7 @@ import Navigation from '../components/Navigation';
 export default function EditNotePage({ updateNote, noteToEdit, categories, addCategory }) {
   return (
     <StyledPage>
-      <Navigation />
+      <Navigation Children="Edit Note" />
       <EditNote
         noteToEdit={noteToEdit}
         updateNote={updateNote}

@@ -11,7 +11,7 @@ export default function AddNotePage({
 }) {
   return (
     <StyledPage>
-      <Navigation />
+      <Navigation Children="New Note" />
       <AddNote
         setNotes={setNotes}
         notes={notes}

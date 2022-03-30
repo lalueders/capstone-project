@@ -4,13 +4,13 @@ import styled from 'styled-components/macro';
 import iconFeather from '../assets/iconFeather--light.svg';
 import iconList from '../assets/iconList--light.svg';
 
-export default function Navigation() {
+export default function Navigation({ Children }) {
   return (
     <StyledNav>
       <StyledNavLink to="/">
         <img src={iconList} height="20" width="auto" alt="Go to my list of notes" />
       </StyledNavLink>
-      <h2>My Notes</h2>
+      <h2>{Children}</h2>
       <StyledNavLink to="/add">
         <img src={iconFeather} height="30" width="auto" alt="Create a new note" />
       </StyledNavLink>
