@@ -75,7 +75,6 @@ const Preview = styled.div`
 `;
 
 const CancelButton = styled.button`
-  cursor: pointer;
   border: none;
   background: none;
   position: absolute;

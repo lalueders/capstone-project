@@ -196,7 +196,6 @@ const DateInput = styled.div`
   svg {
     fill: #394a59;
     width: 20px;
-    cursor: pointer;
   }
 `;
 

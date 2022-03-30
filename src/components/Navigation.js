@@ -33,7 +33,9 @@ const StyledNav = styled.nav`
 `;
 
 const StyledNavLink = styled(NavLink)`
+  cursor: default;
   &.active {
     opacity: 35%;
+    cursor: default;
   }
 `;
