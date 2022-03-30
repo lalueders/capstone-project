@@ -188,9 +188,6 @@ const StyledForm = styled.form`
   grid-template-rows: auto auto auto 1fr auto auto;
   display: grid;
   gap: 1rem;
-  textarea {
-    /* height: 200px; */
-  }
 `;
 
 const DateInput = styled.div`
