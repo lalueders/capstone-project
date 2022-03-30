@@ -11,7 +11,7 @@ function App() {
     {
       id: 'WO8KJDKK0OV',
       date: '2021-12-28',
-      location: 'Schlweswig-Holstein, Scharbeutz',
+      location: 'Hamburg, Rotherbaum',
       title: 'massa. Quisque porttitor',
       text: 'sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit,',
       categories: ['family'],
@@ -140,7 +140,7 @@ function App() {
 
   function showFormSubmitMessage() {
     setIsFormSubmitted(true);
-    setTimeout(() => setIsFormSubmitted(false), 1500);
+    setTimeout(() => setIsFormSubmitted(false), 1000);
   }
 
   function deleteNote(id) {
