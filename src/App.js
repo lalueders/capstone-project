@@ -130,14 +130,7 @@ function App() {
   //   },
   // ]);
 
-  const [categories, setCategories] = useState([
-    'family',
-    'kids',
-    'friends',
-    'vacation',
-    'sports',
-    'others',
-  ]);
+  const [categories, setCategories] = useState(['family', 'kids', 'friends', 'vacation', 'others']);
   const [noteToEdit, setNoteToEdit] = useState();
   const [filterResult, setFilterResult] = useState('');
 
@@ -145,30 +138,30 @@ function App() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const navigate = useNavigate();
 
-  const showFormSubmitMessage = () => {
+  function showFormSubmitMessage() {
     setIsFormSubmitted(true);
     setTimeout(() => setIsFormSubmitted(false), 1500);
-  };
+  }
 
-  const deleteNote = id => {
+  function deleteNote(id) {
     setNotes(notes.filter(note => note.id !== id));
-  };
+  }
 
-  const editNote = id => {
+  function editNote(id) {
     setNoteToEdit(notes.find(note => note.id === id));
     navigate('/edit');
-  };
+  }
 
-  const updateNote = data => {
+  function updateNote(data) {
     const noteToUpdate = notes.findIndex(note => note.id === data.id);
     setNotes(notes, notes.splice(noteToUpdate, 1, data));
     showFormSubmitMessage();
     navigate('/');
-  };
+  }
 
-  const addCategory = input => {
+  function addCategory(input) {
     setCategories([input, ...categories]);
-  };
+  }
 
   function filterNotes(filter) {
     setFilterResult(notes.filter(note => note.categories.includes(filter)));
