@@ -25,10 +25,10 @@ export default function Note({
     <Wrapper active={isSelected} onClick={handleOnClickNote}>
       <Edit hidden={isSelected}>
         <button hidden={!isSelected} onClick={handleOnClickEdit}>
-          <img src={edit} alt="edit note" />
+          <img src={edit} height="20" width="20" alt="edit note" />
         </button>
         <button hidden={!isSelected} onClick={deleteNote}>
-          <img src={remove} alt="delete note" />
+          <img src={remove} height="20" width="20" alt="delete note" />
         </button>
       </Edit>
       <Header active={isSelected}>
@@ -92,9 +92,6 @@ const Edit = styled.div`
     user-select: none;
     border: none;
     background: none;
-    img {
-      height: 20px;
-    }
   }
 `;
 

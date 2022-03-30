@@ -44,7 +44,7 @@ export default function AddNote({ addCategory, categories, setNotes, notes }) {
               'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat + '&lon=' + lng
             );
             const data = await response.json();
-            setLocation(data.address.city + ', ' + data.address.suburb);
+            setLocation(data.address.state + ', ' + data.address.suburb);
           }
           try {
             fetchData();
