@@ -45,7 +45,7 @@ export default function ShowNotePage({
       {notes.length === 0 ? <EmptyListMessage /> : ''}
       {isFormSubmitted ? <StyledMessage>Got it!...😉</StyledMessage> : ''}
       <NotesList>
-        {searchInput.length > 0 && searchNotes.length > 0
+        {searchInput.length > 0
           ? searchNotes.map(note => (
               <Note
                 key={note.id}
