@@ -27,7 +27,7 @@ const StyledNav = styled.nav`
   padding: 0.75rem;
 
   h2 {
-    color: var(--blue);
+    color: var(--lightblue);
     font-size: 1.25rem;
   }
 `;

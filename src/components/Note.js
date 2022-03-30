@@ -33,12 +33,14 @@ export default function Note({
           <img src={trashIcon} alt="delete note" />
         </button>
       </Buttons>
-      <time>{date}</time>
-      {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
+      <NoteHeader active={isSelected}>
+        <time>{date}</time>
+        {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
+      </NoteHeader>
       <h2>{title}</h2>
       <p>{text}</p>
       <StyledImage src={img} alt="" width="100%" />
-      <StyledList role="list">
+      <StyledList role="list" active={isSelected}>
         {categories.map((category, index) => (
           <li key={index}>{category}</li>
         ))}
@@ -48,11 +50,10 @@ export default function Note({
 }
 
 const Wrapper = styled.section`
-  cursor: pointer;
-  background: ${props => (props.active ? '#394a59' : '')};
-  padding: ${props => (props.active ? '1.5rem' : '0.5rem')};
-  color: ${props => (props.active ? '#DCE6F2' : '#394a59')};
-  margin: 1rem 0.5rem;
+  user-select: none;
+  background: ${props => (props.active ? 'var(--darkblue)' : '')};
+  padding: ${props => (props.active ? '1rem' : '0.75rem')};
+  color: ${props => (props.active ? 'var(--lightblue)' : 'var(--darkblue)')};
   border: 1px solid;
   border-radius: 4px;
   display: grid;
@@ -60,17 +61,28 @@ const Wrapper = styled.section`
   word-break: break-word;
 `;
 
+const NoteHeader = styled.time`
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: ${props => (props.active ? 'var(--blue)' : '#687B8C')};
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #687b8c;
+`;
+
 const StyledList = styled.ul`
-  padding: 0;
   list-style: none;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  color: ${props => (props.active ? 'var(--blue)' : '#687B8C')};
 
   li {
+    padding: 0.25rem;
+    font-size: 0.75rem;
     border: 1px solid;
     border-radius: 4px;
-    padding: 0.25rem;
   }
 `;
 
@@ -78,10 +90,8 @@ const Buttons = styled.div`
   display: flex;
   justify-self: end;
   position: absolute;
-
   button {
     user-select: none;
-    cursor: pointer;
     border: none;
     background: none;
     img {

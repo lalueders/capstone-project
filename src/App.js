@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import ShowNotePage from './pages/ShowNotePage.js';
 import AddNotePage from './pages/AddNotePage.js';
 import EditNotePage from './pages/EditNotePage.js';
-import Navigation from './components/Navigation.js';
 
 function App() {
   const [notes, setNotes] = useState([
@@ -137,7 +136,6 @@ function App() {
 
   return (
     <Grid>
-      {/* <Navigation /> */}
       <Routes>
         <Route
           path="/"
@@ -187,6 +185,7 @@ function App() {
 export default App;
 
 const Grid = styled.div`
+  margin: 0 auto;
   max-width: 600px;
   height: 100vh;
   position: relative;
