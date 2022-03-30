@@ -43,13 +43,7 @@ export default function ShowNotePage({
         />
       </Header>
       {notes.length === 0 ? <EmptyListMessage /> : ''}
-      {isFormSubmitted ? (
-        <StyledMessage>
-          Got it!... But for the moment your notes will be deleted at page refresh 😟{' '}
-        </StyledMessage>
-      ) : (
-        ''
-      )}
+      {isFormSubmitted ? <StyledMessage>Got it!...😉</StyledMessage> : ''}
       <NotesList>
         {searchInput.length > 0 && searchNotes.length > 0
           ? searchNotes.map(note => (
@@ -102,7 +96,7 @@ export default function ShowNotePage({
 }
 
 const StyledPage = styled.main`
-  margin-top: 190px;
+  margin-top: 182px;
   width: 100%;
 `;
 
@@ -121,7 +115,7 @@ const Header = styled.header`
 `;
 
 const NotesList = styled.main`
-  margin: 0 0.5rem;
+  margin: 0.5rem;
   display: grid;
   gap: 1rem;
 `;
@@ -133,7 +127,7 @@ const StyledMessage = styled.p`
   text-align: center;
   background: #cde7b3;
   border-radius: 4px;
-  opacity: 0.75;
   padding: 1rem 1.5rem;
-  margin: 4.5rem 0.5rem 1rem 0.5rem;
+  margin: 0.5rem 1rem;
+  opacity: 0.75;
 `;

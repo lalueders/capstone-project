@@ -7,7 +7,13 @@ import AddCategories from './AddCategories';
 import ImageUpload from './ImageUpload';
 import addIcon from '../assets/iconAdd.svg';
 
-export default function AddNote({ addCategory, categories, setNotes, notes }) {
+export default function AddNote({
+  showFormSubmitMessage,
+  addCategory,
+  categories,
+  setNotes,
+  notes,
+}) {
   const navigate = useNavigate();
   const [image, setImage] = useState('');
   const [isToEdit, setIsToEdit] = useState(false);
@@ -71,6 +77,7 @@ export default function AddNote({ addCategory, categories, setNotes, notes }) {
     data.categories = categoriesSelected;
     data.img = image;
     setNotes([data, ...notes]);
+    showFormSubmitMessage();
     navigate('../');
   }
 
