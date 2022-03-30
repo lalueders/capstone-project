@@ -35,8 +35,10 @@ export default function Note({
         <time>{date}</time>
         {location ? <p>{location}</p> : <p>No location has been saved for this card!</p>}
       </Header>
+
       <h2>{title}</h2>
       <p>{text}</p>
+
       <Image src={img} alt="" width="100%" />
       <Categories role="list" active={isSelected}>
         {categories.map((category, index) => (
@@ -59,7 +61,7 @@ const Wrapper = styled.section`
   word-break: break-word;
 `;
 
-const Header = styled.time`
+const Header = styled.section`
   display: grid;
   gap: 0.25rem;
   font-size: 0.9rem;
