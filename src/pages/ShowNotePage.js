@@ -51,7 +51,7 @@ export default function ShowNotePage({
         ''
       )}
       <NotesList>
-        {searchInput.length > 0
+        {searchInput.length > 0 && searchNotes.length > 0
           ? searchNotes.map(note => (
               <Note
                 key={note.id}
@@ -102,7 +102,8 @@ export default function ShowNotePage({
 }
 
 const StyledPage = styled.main`
-  margin-top: 167px;
+  margin-top: 190px;
+  width: 100%;
 `;
 
 const Header = styled.header`
@@ -114,8 +115,9 @@ const Header = styled.header`
   display: grid;
   gap: 0.5rem;
   background: var(--grey);
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
   border-bottom: 10px solid var(---grey);
+  box-shadow: 0px 2px 3px 0px grey;
 `;
 
 const NotesList = styled.main`

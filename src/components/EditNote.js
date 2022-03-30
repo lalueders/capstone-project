@@ -171,7 +171,6 @@ const StyledTags = styled.button`
   font-size: 1rem;
   text-decoration: none;
   white-space: nowrap;
-  cursor: pointer;
 `;
 
 const StyledForm = styled.form`
@@ -191,7 +190,6 @@ const DateInput = styled.div`
   svg {
     fill: #394a59;
     width: 20px;
-    cursor: pointer;
   }
 `;
 
@@ -214,7 +212,6 @@ const Button = styled.button`
   align-items: center;
   border: none;
   height: 100%;
-  cursor: pointer;
 `;
 
 const SubmitWrapper = styled.div`
@@ -229,6 +226,5 @@ const SubmitWrapper = styled.div`
     border: none;
     border-radius: 4px;
     padding: 0.75rem;
-    cursor: pointer;
   }
 `;
