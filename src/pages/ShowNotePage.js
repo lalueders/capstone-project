@@ -117,7 +117,7 @@ const Header = styled.header`
   background: var(--grey);
   padding-bottom: 1rem;
   border-bottom: 10px solid var(---grey);
-  box-shadow: 0px 2px 3px 0px grey;
+  box-shadow: 0px 4px 3px -3px grey;
 `;
 
 const NotesList = styled.main`
