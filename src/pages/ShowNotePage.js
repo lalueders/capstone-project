@@ -29,7 +29,7 @@ export default function ShowNotePage({
   return (
     <StyledPage>
       <Header>
-        <Navigation />
+        <Navigation Children="My Notes" />
         <SearchNotes
           setSearchInput={setSearchInput}
           searchNotes={searchNotes}

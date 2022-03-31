@@ -37,6 +37,7 @@ export default function AddCategories({ categories, addCategory, toggleAddCatego
           minLength="3"
           required
           placeholder="Add new category..."
+          autoFocus
         ></input>
         <StyledButton type="submit">
           <img src={add} width="20" height="20" alt="Add more categories here" />
