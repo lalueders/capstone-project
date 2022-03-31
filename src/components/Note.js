@@ -89,7 +89,7 @@ const Categories = styled.ul`
 const Edit = styled.div`
   display: flex;
   justify-self: end;
-  position: absolute;
+  align-items: center;
   button {
     user-select: none;
     border: none;
