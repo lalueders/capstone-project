@@ -1,25 +1,24 @@
 # MyNotes App
-
 > Capstone Project from the Web Development Bootcamp [neueFische](https://www.neuefische.de/weiterbildung/web-development) 🐠
 
-> Built with [Create React App](https://github.com/facebook/create-react-app) 
+<div>
+<img align="left" width="250px" src="https://user-images.githubusercontent.com/97477326/161311743-122b5367-7833-4cc6-a504-337e7c94bda5.png" alt="Screenshot of MyNotes App" />
+  <img  width="250px" src="https://user-images.githubusercontent.com/97477326/161312813-8b82879d-3e3e-4e80-b74a-6228b1939c49.png" alt="Screenshot of MyNotes App"/>
+</div>
+
 
 ## Features:
-- Save your Notes by adding Notes with a date, individual categories, a location, a title, your personal text and images
-- Your location will be added to your note automatically on create if you have agreed and enabled geolocation in your device settings. Of course, you can also edit your location manually
+
+- Save your Notes including a date, your individual categories, your location, a title, your personal text and optipnal images
+- Your location will be added automatically on create if you have agreed and enabled geolocation in your device settings.<br>
+  Of course, you can also edit your location manually
 - Each note can be fully edited afterwards
 - Use a full-text-search to find single Notes
 - Filter your Notes by categories by 
-  - adding categories to every Note on create
-  - adding categories afterwards on editing Notes
+- adding categories to every Note on create
+- adding categories afterwards on editing Notes
 - Create new categories and use them as filters when you need them
-- 
-## About:
 
-<div align="left">
-<img width="250px" src="https://user-images.githubusercontent.com/97477326/161311743-122b5367-7833-4cc6-a504-337e7c94bda5.png" alt="Screenshot of MyNotes App" />
-  <img width="250px" src="https://user-images.githubusercontent.com/97477326/161312813-8b82879d-3e3e-4e80-b74a-6228b1939c49.png" alt="Screenshot of MyNotes App"/>
-</div>
 
 ## Demo: 
 
@@ -29,6 +28,8 @@ As I go "mobile first" you will have the best app experience on mobile screen si
 
 
 ## Tech Stack:
+
+Built with [Create React App](https://github.com/facebook/create-react-app) 
 
 - React
 - React Router
@@ -40,15 +41,17 @@ As I go "mobile first" you will have the best app experience on mobile screen si
 - Cloudinary
 - OpenStreetMap
 
+
 ## Project Setup:
 
 - Clone this repository
 - Install with `npm install`
-- Run on http://localhost:3000/ with `npm start`
+- Run on localhost with `npm start`
 - Run tests with `npm run test`
 - Run Storybook with `npm run storybook`
 - You need an account on cloudinary to work with this app
 - Create .env.local file #please check if you have added env.local in your .gitignore
+
 
 ## Cloudinary Setup
 - Create an account on https://cloudinary.com/
