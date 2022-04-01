@@ -15,8 +15,8 @@
 - Each note can be fully edited afterwards
 - Use a full-text-search to find single Notes
 - Filter your Notes by categories by 
-- adding categories to every Note on create
-- adding categories afterwards on editing Notes
+  - adding categories to every Note on create
+  - adding categories afterwards on editing Notes
 - Create new categories and use them as filters when you need them
 
 
