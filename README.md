@@ -1,12 +1,25 @@
-# Capstone Project: Diary App
+# Capstone Project: MyNotes
+
+- Part of the Web Development Bottcamp @neueFische
+
+## About:
+
+## Demo:
+
+## Features:
 
 ## Tech Stack:
 
+Built with Create React App
+
 - React
-- React Router v6
+- React Router
 - React Hook Form
-- Storybook
-- Styled Components
-- Cloudinary
+- React Testing Library
 - Axios
-- Vercel
+- Styled Components
+- Storybook
+- Cloudinary
+- OpenStreetMap
+
+## Project Setup:
