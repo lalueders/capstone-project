@@ -25,8 +25,8 @@ From once-in-a-lifetime events to everyday moments. MyNotes offers you the possi
 
 ## Demo: 
 
-Find the hosted version of the App on Vercel: [MyNotes - Demo](https://capstone-project-phi-rosy.vercel.app/)
-<br>
+### Find the hosted version of the App here: [MyNotes - Demo](https://capstone-project-phi-rosy.vercel.app/)
+
 As I go "mobile first" you will have the best app experience on mobile screen size from 375 to 428 pixel width
 
 
