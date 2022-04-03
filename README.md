@@ -12,22 +12,21 @@ From once-in-a-lifetime events to everyday moments. MyNotes offers you the possi
 
 ## Features:
 
-- Save your Notes including a date, your individual categories, your location, a title, your personal text and optipnal images
+- Create your Notes including date, individual categories, location, title, your personal text and optional images
+- Each Note is fully editable afterwards
+- Image Upload via Cloudinary
 - Your location will be added automatically on create if you have agreed and enabled geolocation in your device settings.<br>
   Of course, you can also edit your location manually
-- Each note can be fully edited afterwards
 - Use a full-text-search to find single Notes
-- Filter your Notes by categories by 
-  - adding categories to every Note on create
-  - adding categories afterwards on editing Notes
+- Filter your Notes by categories
 - Create new categories and use them as filters when you need them
 
 
 ## Demo: 
 
-### Find the hosted version of the App here: [MyNotes - Demo](https://capstone-project-phi-rosy.vercel.app/)
+#### Find the hosted version of the App here: [MyNotes - Demo](https://capstone-project-phi-rosy.vercel.app/)
 
-As I go "mobile first" you will have the best app experience on mobile screen size from 375 to 428 pixel width
+As I go mobile first you will have the best app experience on mobile screen size from 375 to 428 pixel width
 
 
 ## Tech Stack:
